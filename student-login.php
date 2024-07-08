@@ -114,9 +114,9 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-bottom: 65px;">
+        <!-- <div class="row" style="margin-bottom: 65px;">
             <div class="col-md-12 text-center">Don't have an account? <a href="student-register.php"><b>Register</b></a></div>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>

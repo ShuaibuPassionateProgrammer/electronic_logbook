@@ -14,6 +14,8 @@
         <div class="col-md-12 text-center"><h3 style="text-transform: uppercase; color: #6a06dd;">electronic log book for student attachment industrial work scheme</h3></div>
     </div>
 
-    <div class="container mt-5" style="margin-top: 100px"></div>
+    <div class="container mt-5" style="margin-top: 100px">
+        <div class="row justify-content-center" style="margin-top: 100px"></div>
+    </div>
 </body>
 </html>

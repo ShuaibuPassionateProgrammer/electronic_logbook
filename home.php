@@ -15,7 +15,20 @@
     </div>
 
     <div class="container mt-5" style="margin-top: 100px">
-        <div class="row justify-content-center" style="margin-top: 100px"></div>
+        <div class="row justify-content-center" style="margin-top: 100px">
+            <div class="col-md-4">
+                <a href="student-login.php">
+                    <div class="card rounded shadow">
+                        <div class="card-body text-center">
+                            <img src="images/student_image.png" alt="" class="logo p-2" style="box-shadow: 0 1px 5px rgba(2,2,2,.2); border-radius: 200px">
+                        </div>
+                        <div class="card-body text-center rounded">
+                            <button class="btn btn-outline-primary rounded librarian btn-lg w-50" style="border-radius: 20px">Student Area</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

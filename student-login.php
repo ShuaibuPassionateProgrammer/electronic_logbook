@@ -53,5 +53,24 @@
             </div>
         </div>
     </div>
+
+    <?php
+    if(isset($_SESSION['success']))
+    {
+        ?>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close">&times;</button>
+                        <p class="text-center"><?= $_SESSION['success']; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+        unset($_SESSION['success']);
+    }
+    ?>
 </body>
 </html>

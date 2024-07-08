@@ -59,5 +59,9 @@
 			<button class="btn btn-outline-primary" style="width: 30%;" id="getStarted" name="getStarted">Get Started</button>
 		</center>
 	</div>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap4.min.js"></script>
 </body>
 </html>

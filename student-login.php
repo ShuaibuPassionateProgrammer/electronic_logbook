@@ -79,7 +79,39 @@
                 <div class="panel-heading">
                     <h3 class="panel-title text-center">Student Sign In</h3>
                 </div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    <!--role="form"-->
+                    <form action="student-login.php" method="POST">
+                        <fieldset>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" class="form-control" name="st_matricno" placeholder="Matric Number" required>
+                            </div>
+
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                <input type="password" class="form-control" name="st_password" placeholder="Password" required>
+                            </div>
+                            
+                            <div class="checkbox">
+                                <label>
+                                    <div id="message"><?php /*echo output_message($error);*/ ?></div>
+                                </label>
+                                <style>
+                                    #message li{
+                                        list-style-type:none;
+                                        color:red;
+                                    }
+                                </style>
+                            </div>
+
+                            <div class="form-group">
+                                <a href="student-reset-password.php">Forget Password?</a>
+                                <button class="btn btn-primary pull-right" type="submit" name="st_login"><span class="fa fa-user"></span>&nbsp;Login &nbsp;</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

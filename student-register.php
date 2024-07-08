@@ -48,6 +48,8 @@
     </nav>
     <!-- /header -->
 
-    <div class="container" style="margin-top: 50px;"></div>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row"></div>
+    </div>
 </body>
 </html>

@@ -55,7 +55,9 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Create New Student Account</h3>
                     </div>
-                    <div class="panel-body tab-content"></div>
+                    <div class="panel-body tab-content">
+                        <?php include("errors.php");?>
+                    </div>
                 </div>
             </div>
         </div>

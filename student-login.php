@@ -39,7 +39,7 @@
 
         <div class="collapse navbar-collapse navHeadercollapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/eleclogbook"><span class="fa fa-home"></span> Home</a></li>
+                <li><a href="index.php"><span class="fa fa-home"></span> Home</a></li>
                 <li class="active"><a href="student-login.php"><span class="fa fa-user"></span> Login</a></li>
                 <li><a href="student-register.php"><span class="fa fa-user-plus"></span> Register</a></li>
             </ul>

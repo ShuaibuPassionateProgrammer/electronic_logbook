@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <!--  -->
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-12 text-center"><h3 style="text-transform: uppercase; color: #6a06dd;">electronic log book for student attachment industrial work scheme</h3></div>
+    </div>
 </body>
 </html>

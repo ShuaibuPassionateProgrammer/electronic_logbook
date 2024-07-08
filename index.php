@@ -66,7 +66,7 @@
     <script>
         var btnGetStarted = document.getElementById("getStarted");
         btnGetStarted.addEventListener("click", () => {
-            
+            window.location.href = "home.php";
         });
     </script>
 </body>

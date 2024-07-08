@@ -65,6 +65,9 @@
 	<script type="text/javascript" src="js/bootstrap4.min.js"></script>
     <script>
         var btnGetStarted = document.getElementById("getStarted");
+        btnGetStarted.addEventListener("click", () => {
+            
+        });
     </script>
 </body>
 </html>

@@ -49,7 +49,9 @@
     <!-- /header -->
 
     <div class="container" style="margin-top: 50px;">
-        <div class="row"></div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2"></div>
+        </div>
     </div>
 </body>
 </html>

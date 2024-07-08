@@ -53,5 +53,11 @@
 			</div>
 		</div>
 	</div>
+
+    <div class="container pt-5 mb-5">
+		<center>
+			<button class="btn btn-outline-primary" style="width: 30%;" id="getStarted" name="getStarted">Get Started</button>
+		</center>
+	</div>
 </body>
 </html>

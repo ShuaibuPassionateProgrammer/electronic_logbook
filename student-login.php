@@ -72,5 +72,7 @@
         unset($_SESSION['success']);
     }
     ?>
+
+    <div class="row"></div>
 </body>
 </html>

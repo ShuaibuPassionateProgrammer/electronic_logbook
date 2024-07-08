@@ -57,6 +57,42 @@
                     </div>
                     <div class="panel-body tab-content">
                         <?php include("errors.php");?>
+                        <form class="tab-pane fade in active" method="POST" action="student-register.php">
+                            <div class="form-group col-md-6 has-feedback">
+                                <input class="form-control" type="text" name="student_fullname" id=""  required="required" placeholder="Full Name" autocomplete="off">
+                            </div>
+
+                            <div class="form-group col-md-6 has-feedback">
+                                <input class="form-control" type="text" name="student_matricno" id=""  required="required" placeholder="Matric Number" autocomplete="off">
+                            </div>
+
+                            <div class="form-group col-md-6 has-feedback">
+                                <input class="form-control" type="email" name="student_email" id=""  required="required" placeholder="Email" autocomplete="off">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <select class="form-control" type="text" name="student_level" id=""  required="required" autocomplete="off">
+                                    <option>--Select Level--</option>
+                                    <option>100 Level</option>
+                                    <option>200 Level</option>
+                                    <option>300 Level</option>
+                                    <option>400 Level</option>
+                                    <option>500 Level</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6 has-feedback">
+                                <input class="form-control" type="password" name="student_password" id=""  required="required" placeholder="Password" autocomplete="off">
+                            </div>
+
+                            <div class="form-group col-md-6 has-feedback">
+                                <input class="form-control" type="password" name="student_cpassword" id=""  required="required" placeholder="Confirm Password" autocomplete="off">
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <button class="btn btn-primary pull-right" type="submit" name="newstudent">&nbsp;Register &nbsp;<span class="fa fa-save"></span></button>
+                            </div><!-- Booking tab ends -->
+                        </form>
                     </div>
                 </div>
             </div>

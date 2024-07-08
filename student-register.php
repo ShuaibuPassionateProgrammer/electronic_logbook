@@ -50,7 +50,9 @@
 
     <div class="container" style="margin-top: 50px;">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2"></div>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default login-panel"></div>
+            </div>
         </div>
     </div>
 </body>

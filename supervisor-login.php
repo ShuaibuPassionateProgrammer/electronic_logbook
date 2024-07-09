@@ -28,6 +28,7 @@
                         <div class="panel-heading">
                             <h3 class="panel-title text-center">Supervisor Sign In</h3>
                         </div>
+                        <div class="panel-body"></div>
                     </div>
                 </div>
             </div>

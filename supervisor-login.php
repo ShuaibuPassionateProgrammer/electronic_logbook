@@ -21,6 +21,8 @@
                     <?php include('errors.php');?>
                 </div>
             </div>
+
+            <div class="row"></div>
         </div>
     </section>
 </body>

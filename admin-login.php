@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <section id="social" class="social" style="background: #6a06dd;height: 20px;"></section>
+    <section id="social" class="social" style="background: #6a06dd;height: 20px;">
+        <div class="container" style="margin-top: -15px;"></div>
+    </section>
 </body>
 </html>

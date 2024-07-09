@@ -50,7 +50,16 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Student Reset Password</h3>
                     </div>
-                    <div class="panel-body"></div>
+                    <div class="panel-body">
+                        <form action="student-reset-password.php" method="POST">
+			                <div class="form-group"><br>
+			                    <input type="email"  class="form-control" placeholder="Email Address" name="email" required><br>
+                                <input type="submit" class="btn btn-primary pull-right" name="sturespass" value="Reset Password">
+			                </div>
+			                
+			                <div class="clearfix"></div>
+			            </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -17,7 +17,15 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>
                     </div>
-                    <div class="panel-body"></div>
+                    <div class="panel-body">
+                        <form action="reset-password.php" method="POST">
+			                <div class="form-group"><br>
+			                    <input type="text"  class="form-control" placeholder="Email Address" name="email" required>
+			                </div>
+			                <a href="reset-password.php" class="btn btn-primary pull-right">Reset Password</a>
+			                <div class="clearfix"></div>
+			            </form>
+                    </div>
                 </div>
             </div>
         </div>

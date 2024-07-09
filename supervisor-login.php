@@ -65,6 +65,10 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" style="margin-bottom: 65px;">
+            <div class="col-md-12 text-center">Back to Homepage?<a href="/eleclogbook"><b>Click Here</b></a></div>
+        </div>
     </section>
 </body>
 </html>

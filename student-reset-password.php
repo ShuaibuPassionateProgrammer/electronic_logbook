@@ -45,7 +45,9 @@
 
     <div class="container" style="margin-top: 100px;">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4"></div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default login-panel"></div>
+            </div>
         </div>
     </div>
 </body>

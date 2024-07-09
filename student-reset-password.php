@@ -1,3 +1,5 @@
+<?php require_once('./server.php');?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

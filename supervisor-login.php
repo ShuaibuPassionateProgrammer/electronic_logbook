@@ -11,7 +11,11 @@
 </head>
 <body>
     <section id="social" class="social" style="background: #6a06dd;height: 20px;">
-        <div class="container" style="margin-top: -15px;"></div>
+        <div class="container" style="margin-top: -15px;">
+            <div class="row" style="margin-bottom: 65px;">
+                <div class="col-md-12 text-center margin-top: 30px;"><h3 style="text-transform: uppercase; color: #6a06dd;">electronic log book for student attachment industrial work scheme</h3></div>
+            </div>
+        </div>
     </section>
 </body>
 </html>

@@ -23,7 +23,11 @@
 
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-default login-panel"></div>
+                    <div class="panel panel-default login-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Admin Sign In</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

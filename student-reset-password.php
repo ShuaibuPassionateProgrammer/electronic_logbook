@@ -43,6 +43,8 @@
         </div>
     </nav>
 
-    <div class="container" style="margin-top: 100px;"></div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="row"></div>
+    </div>
 </body>
 </html>

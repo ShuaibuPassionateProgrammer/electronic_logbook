@@ -10,6 +10,6 @@
 </head>
 </head>
 <body>
-    <!--  -->
+    <section id="social" class="social" style="background: #6a06dd;height: 20px;"></section>
 </body>
 </html>

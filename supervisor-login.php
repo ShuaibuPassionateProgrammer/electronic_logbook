@@ -70,5 +70,4 @@
             <div class="col-md-12 text-center">Back to Homepage?<a href="/eleclogbook"><b>Click Here</b></a></div>
         </div>
     </section>
-</body>
-</html>
+<?php include('includes/footer.php');?>

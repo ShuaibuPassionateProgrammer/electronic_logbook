@@ -43,6 +43,12 @@
         </div>
     </nav>
 
-    <div class="container" style="margin-top: 65px;"></div>
+    <div class="container" style="margin-top: 65px;">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="row justify-content-center" style="margin-bottom: 65px; text-align: center">
+                <?php include('errors.php');?>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

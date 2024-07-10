@@ -56,7 +56,49 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Sign In</h3>
                     </div>
-                    <div class="panel-body"></div>
+                    <div class="panel-body">
+                        <!--role="form"-->
+                        <form action="login.php" method="POST">
+                            <fieldset>
+                               <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" name="username" placeholder="Username" required>
+                                </div>
+
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" type="text" name="role" id=""  required="required" autocomplete="off">
+                                        <option style="padding-left: 20px;">--User Type--</option>
+                                        <option>Admin</option>
+                                        <option>Supervisor</option>
+                                        <option>Industrial Supervisor</option>
+                                        <option>Student</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="checkbox">
+                                    <label>
+                                        <div id="message"><?php /*echo output_message($error);*/ ?></div>
+                                    </label>
+                                    <style>
+                                        #message li{
+                                            list-style-type:none;
+                                            color:red;
+                                        }
+                                    </style>
+                                </div>
+
+                                <div class="form-group">
+                                    <a href="reset-password.php">Forget Password?</a>
+                                    <button class="btn btn-primary pull-right" type="submit" name="login"><span class="fa fa-user"></span>&nbsp;Login &nbsp;</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

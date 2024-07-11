@@ -35,5 +35,7 @@ if(isset($_GET['stu_del']))
     $query_run = mysqli_query($db, $query);
 
     if($query_run)
-	{}
+	{
+        $_SESSION['stu_del_status'] = "Student is permanently deleted!";
+    }
 }

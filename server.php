@@ -46,4 +46,5 @@ if(isset($_GET['deny']))
 {
     $denial_id = $_GET['deny'];
     $query = "DELETE FROM tbl_student WHERE id=$denial_id";
+    $query_run = mysqli_query($db, $query);
 }

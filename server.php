@@ -37,5 +37,6 @@ if(isset($_GET['stu_del']))
     if($query_run)
 	{
         $_SESSION['stu_del_status'] = "Student is permanently deleted!";
+        header('location: student-registration-request.php');
     }
 }

@@ -90,4 +90,7 @@ if(isset($_POST['newstudent']))
 	$student_check_query = "SELECT * FROM tbl_student WHERE email='$student_email' OR matricno='$student_matricno' LIMIT 1";
     $student_check = mysqli_query($db, $student_check_query);
     $student = mysqli_fetch_assoc($student_check);
+
+    if($student)
+	{}
 }

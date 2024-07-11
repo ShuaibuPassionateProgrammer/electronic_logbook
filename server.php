@@ -72,3 +72,4 @@ if(isset($_GET['approve']))
 //student register
 if(isset($_POST['newstudent']))
 {
+}

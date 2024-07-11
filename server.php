@@ -54,3 +54,7 @@ if(isset($_GET['deny']))
         header("location: student-registration-request.php");
     }
 }
+
+//Make Student Active
+if(isset($_GET['approve']))
+{}

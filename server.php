@@ -97,5 +97,8 @@ if(isset($_POST['newstudent']))
 		{
 			array_push($errors, "This E-Mail is already registered!");
 		}
+
+        if(count($errors) == 0)
+	    {}
     }
 }

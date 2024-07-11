@@ -65,5 +65,6 @@ if(isset($_GET['approve']))
     if($query_run)
 	{
         $_SESSION['approve_status'] = "Student is now Active";
+        header('location: student-registration-request.php');
     }
 }

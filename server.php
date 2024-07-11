@@ -16,3 +16,13 @@ if(isset($_POST['sturespass']))
 	</script>
 	<?php
 }
+
+//Change Student Password
+if(isset($_POST['cpsswd']))
+{
+	?>
+	<script>
+		alert("Initializing Password recovery...");
+	</script>
+	<?php
+}

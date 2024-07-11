@@ -79,6 +79,8 @@ if(isset($_POST['newstudent']))
     $student_password = mysqli_real_escape_string($db, $_POST['student_password']);
 
     //Form validation
-	 if(empty($student_fullname)) {array_push($errors, "Fullname is required!");}
-     if(empty($student_matricno)) {array_push($errors, "Matric Number is required!");}
+    if(empty($student_fullname)) {array_push($errors, "Fullname is required!");}
+    if(empty($student_matricno)) {array_push($errors, "Matric Number is required!");}
+    if(empty($student_email)) {array_push($errors, "E-Mail is required!");}
+    
 }

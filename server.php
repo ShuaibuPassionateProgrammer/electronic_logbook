@@ -51,5 +51,6 @@ if(isset($_GET['deny']))
     if($query_run)
 	{
         $_SESSION['deny_status'] = "Student is Deleted!";
+        header("location: student-registration-request.php");
     }
 }

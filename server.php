@@ -63,5 +63,7 @@ if(isset($_GET['approve']))
     $query_run = mysqli_query($db, $query);
 
     if($query_run)
-	{}
+	{
+        $_SESSION['approve_status'] = "Student is now Active";
+    }
 }

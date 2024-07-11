@@ -59,4 +59,5 @@ if(isset($_GET['deny']))
 if(isset($_GET['approve']))
 {
     $approval_id = $_GET['approve'];
+    $query = "UPDATE tbl_student SET status = 'active' WHERE id=$approval_id";
 }

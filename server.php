@@ -80,4 +80,5 @@ if(isset($_POST['newstudent']))
 
     //Form validation
 	 if(empty($student_fullname)) {array_push($errors, "Fullname is required!");}
+     if(empty($student_matricno)) {array_push($errors, "Matric Number is required!");}
 }

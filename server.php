@@ -61,4 +61,7 @@ if(isset($_GET['approve']))
     $approval_id = $_GET['approve'];
     $query = "UPDATE tbl_student SET status = 'active' WHERE id=$approval_id";
     $query_run = mysqli_query($db, $query);
+
+    if($query_run)
+	{}
 }

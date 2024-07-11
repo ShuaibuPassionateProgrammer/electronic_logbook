@@ -99,6 +99,8 @@ if(isset($_POST['newstudent']))
 		}
 
         if(count($errors) == 0)
-	    {}
+	    {
+            $hash_password = md5($student_password);
+        }
     }
 }

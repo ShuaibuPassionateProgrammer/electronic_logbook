@@ -85,4 +85,7 @@ if(isset($_POST['newstudent']))
     if(empty($student_level)) {array_push($errors, "Please select your level");}
     if(empty($student_password)) {array_push($errors, "Password is required!");}
     if($student_password != $student_cpassword) {array_push($errors, "Passwords not match!");}
+
+    //check the db for existing user with same username
+	$student_check_query = "SELECT * FROM tbl_student WHERE email='$student_email' OR matricno='$student_matricno' LIMIT 1";
 }

@@ -32,4 +32,5 @@ if(isset($_GET['stu_del']))
 {
     $del_stu = $_GET['stu_del'];
     $query = "DELETE FROM tbl_student WHERE id=$del_stu";
+    $query_run = mysqli_query($db, $query);
 }

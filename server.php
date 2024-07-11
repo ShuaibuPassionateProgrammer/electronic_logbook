@@ -5,3 +5,4 @@ include('includes/config.php');
 
 $errors = array();
 $success = array();
+$s_msg = array();

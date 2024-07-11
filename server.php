@@ -57,4 +57,6 @@ if(isset($_GET['deny']))
 
 //Make Student Active
 if(isset($_GET['approve']))
-{}
+{
+    $approval_id = $_GET['approve'];
+}

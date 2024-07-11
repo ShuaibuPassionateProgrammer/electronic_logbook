@@ -73,4 +73,5 @@ if(isset($_GET['approve']))
 if(isset($_POST['newstudent']))
 {
     $student_fullname = mysqli_real_escape_string($db, $_POST['student_fullname']);
+    $student_matricno = mysqli_real_escape_string($db, $_POST['student_matricno']);
 }

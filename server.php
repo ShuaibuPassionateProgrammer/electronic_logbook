@@ -88,4 +88,5 @@ if(isset($_POST['newstudent']))
 
     //check the db for existing user with same username
 	$student_check_query = "SELECT * FROM tbl_student WHERE email='$student_email' OR matricno='$student_matricno' LIMIT 1";
+    $student_check = mysqli_query($db, $student_check_query);
 }

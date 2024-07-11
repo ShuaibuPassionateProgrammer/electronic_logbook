@@ -30,5 +30,5 @@ if(isset($_POST['cpsswd']))
 //Delete Student completely
 if(isset($_GET['stu_del']))
 {
-    //
+    $del_stu = $_GET['stu_del'];
 }

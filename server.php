@@ -26,3 +26,9 @@ if(isset($_POST['cpsswd']))
 	</script>
 	<?php
 }
+
+//Delete Student completely
+if(isset($_GET['stu_del']))
+{
+    //
+}

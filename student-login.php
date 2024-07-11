@@ -1,5 +1,12 @@
 <?php include('server.php');?>
 
+<?php
+if(isset($_SESSION['st_login']))
+{
+    //
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

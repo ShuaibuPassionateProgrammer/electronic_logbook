@@ -72,4 +72,5 @@ if(isset($_GET['approve']))
 //student register
 if(isset($_POST['newstudent']))
 {
+    $student_fullname = mysqli_real_escape_string($db, $_POST['student_fullname']);
 }

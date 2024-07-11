@@ -49,5 +49,7 @@ if(isset($_GET['deny']))
     $query_run = mysqli_query($db, $query);
 
     if($query_run)
-	{}
+	{
+        $_SESSION['deny_status'] = "Student is Deleted!";
+    }
 }

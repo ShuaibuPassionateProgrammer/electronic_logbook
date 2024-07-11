@@ -40,3 +40,7 @@ if(isset($_GET['stu_del']))
         header('location: student-registration-request.php');
     }
 }
+
+//Deny or Delete Student
+if(isset($_GET['deny']))
+{}

@@ -45,4 +45,5 @@ if(isset($_GET['stu_del']))
 if(isset($_GET['deny']))
 {
     $denial_id = $_GET['deny'];
+    $query = "DELETE FROM tbl_student WHERE id=$denial_id";
 }

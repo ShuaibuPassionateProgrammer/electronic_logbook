@@ -83,4 +83,5 @@ if(isset($_POST['newstudent']))
     if(empty($student_matricno)) {array_push($errors, "Matric Number is required!");}
     if(empty($student_email)) {array_push($errors, "E-Mail is required!");}
     if(empty($student_level)) {array_push($errors, "Please select your level");}
+    if(empty($student_password)) {array_push($errors, "Password is required!");}
 }

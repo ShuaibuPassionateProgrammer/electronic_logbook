@@ -68,3 +68,7 @@ if(isset($_GET['approve']))
         header('location: student-registration-request.php');
     }
 }
+
+//student register
+if(isset($_POST['newstudent']))
+{

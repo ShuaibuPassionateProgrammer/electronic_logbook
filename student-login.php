@@ -3,7 +3,7 @@
 <?php
 if(isset($_SESSION['st_login']))
 {
-    //
+    header('location: student-dashboard.php');
 }
 ?>
 

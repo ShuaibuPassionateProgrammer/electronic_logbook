@@ -92,5 +92,10 @@ if(isset($_POST['newstudent']))
     $student = mysqli_fetch_assoc($student_check);
 
     if($student)
-	{}
+	{
+        if($student['email'] === $student_email)
+		{
+			array_push($errors, "This E-Mail is already registered!");
+		}
+    }
 }

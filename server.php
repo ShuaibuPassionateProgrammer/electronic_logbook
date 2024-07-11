@@ -76,4 +76,5 @@ if(isset($_POST['newstudent']))
     $student_matricno = mysqli_real_escape_string($db, $_POST['student_matricno']);
     $student_email = mysqli_real_escape_string($db, $_POST['student_email']);
     $student_level = mysqli_real_escape_string($db, $_POST['student_level']);
+    $student_password = mysqli_real_escape_string($db, $_POST['student_password']);
 }

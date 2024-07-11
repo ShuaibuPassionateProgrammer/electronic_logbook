@@ -43,4 +43,6 @@ if(isset($_GET['stu_del']))
 
 //Deny or Delete Student
 if(isset($_GET['deny']))
-{}
+{
+    $denial_id = $_GET['deny'];
+}

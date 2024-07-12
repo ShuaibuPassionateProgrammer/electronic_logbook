@@ -129,5 +129,6 @@ if(isset($_POST['st_login'])) {
         $st_hpassword = md5($st_password);
         $query1 = "SELECT * FROM tbl_student WHERE matricno='$st_matricno' AND password='$st_hpassword' LIMIT 1";
         $result1 = mysqli_query($db, $query1);
+        $row = mysqli_fetch_assoc($result1);
     }
 }

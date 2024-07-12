@@ -130,5 +130,7 @@ if(isset($_POST['st_login'])) {
         $query1 = "SELECT * FROM tbl_student WHERE matricno='$st_matricno' AND password='$st_hpassword' LIMIT 1";
         $result1 = mysqli_query($db, $query1);
         $row = mysqli_fetch_assoc($result1);
+
+        $status = $row['status'];
     }
 }

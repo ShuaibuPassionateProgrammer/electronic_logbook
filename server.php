@@ -110,3 +110,6 @@ if(isset($_POST['newstudent']))
         }
     }
 }
+
+// Student Login
+if(isset($_POST['st_login'])) {}

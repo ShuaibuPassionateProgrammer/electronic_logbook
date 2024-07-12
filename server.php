@@ -124,4 +124,6 @@ if(isset($_POST['st_login'])) {
     if(empty($st_password)) {
         array_push($errors, "Password is required!");
     }
+
+    if(count($errors) == 0) {}
 }

@@ -142,5 +142,6 @@ if(isset($_POST['st_login'])) {
         elseif($status == 'inactive') {
 			array_push($errors, "Your account is still pending for approval!");
 		}
+        else {}
     }
 }

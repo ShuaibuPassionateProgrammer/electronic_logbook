@@ -106,6 +106,7 @@ if(isset($_POST['newstudent']))
 
             $_SESSION['username'] = $username;
             $_SESSION['success'] = "Registration is successful and your account is now pending for approval!";
+            header('location: student-login.php');
         }
     }
 }

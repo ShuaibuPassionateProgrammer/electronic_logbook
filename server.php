@@ -125,5 +125,7 @@ if(isset($_POST['st_login'])) {
         array_push($errors, "Password is required!");
     }
 
-    if(count($errors) == 0) {}
+    if(count($errors) == 0) {
+        $st_hpassword = md5($st_password);
+    }
 }

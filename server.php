@@ -137,6 +137,7 @@ if(isset($_POST['st_login'])) {
             $_SESSION['student'] = $st_matricno;
             $_SESSION['st_login'] = true;
             header('location: student-dashboard.php');
+            exit();
         }
     }
 }

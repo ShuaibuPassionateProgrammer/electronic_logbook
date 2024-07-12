@@ -112,4 +112,6 @@ if(isset($_POST['newstudent']))
 }
 
 // Student Login
-if(isset($_POST['st_login'])) {}
+if(isset($_POST['st_login'])) {
+    $st_matricno = mysqli_real_escape_string($db, $_POST['st_matricno']);
+}

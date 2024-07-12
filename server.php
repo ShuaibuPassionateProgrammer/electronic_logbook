@@ -139,5 +139,8 @@ if(isset($_POST['st_login'])) {
             header('location: student-dashboard.php');
             exit();
         }
+        elseif($status == 'inactive') {
+			array_push($errors, "Your account is still pending for approval!");
+		}
     }
 }

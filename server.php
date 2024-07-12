@@ -132,5 +132,6 @@ if(isset($_POST['st_login'])) {
         $row = mysqli_fetch_assoc($result1);
 
         $status = $row['status'];
+        if($status == 'active') {}
     }
 }

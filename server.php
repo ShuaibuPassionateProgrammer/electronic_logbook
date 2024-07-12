@@ -120,4 +120,8 @@ if(isset($_POST['st_login'])) {
     if(empty($st_matricno)) {
         array_push($errors, "Matric Number is required!");
     }
+
+    if(empty($st_password)) {
+        array_push($errors, "Password is required!");
+    }
 }

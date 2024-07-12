@@ -127,5 +127,6 @@ if(isset($_POST['st_login'])) {
 
     if(count($errors) == 0) {
         $st_hpassword = md5($st_password);
+        $query1 = "SELECT * FROM tbl_student WHERE matricno='$st_matricno' AND password='$st_hpassword' LIMIT 1";
     }
 }

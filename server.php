@@ -134,7 +134,8 @@ if(isset($_POST['st_login'])) {
         $status = $row['status'];
         if($status == 'active') {
             $_SESSION['id'] = $row['id'];
-            $_SESSION['student'] = $st_matricno;	
+            $_SESSION['student'] = $st_matricno;
+            $_SESSION['st_login'] = true;
         }
     }
 }

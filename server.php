@@ -103,6 +103,8 @@ if(isset($_POST['newstudent']))
             $hash_password = md5($student_password);
             $sql = "INSERT INTO tbl_student(fullname, matricno, level, email, password, status) VALUES ('$student_fullname', '$student_matricno', '$student_level', '$student_email', '$hash_password', 'inactive')";
             mysqli_query($db, $sql);
+
+            $_SESSION['username'] = $username;
         }
     }
 }

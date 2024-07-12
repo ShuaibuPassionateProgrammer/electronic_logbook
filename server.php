@@ -116,4 +116,8 @@ if(isset($_POST['st_login'])) {
     $st_matricno = mysqli_real_escape_string($db, $_POST['st_matricno']);
     $st_password = mysqli_real_escape_string($db, $_POST['st_password']);
 
+    //Form validation
+    if(empty($st_matricno)) {
+        array_push($errors, "Matric Number is required!");
+    }
 }

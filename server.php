@@ -105,6 +105,7 @@ if(isset($_POST['newstudent']))
             mysqli_query($db, $sql);
 
             $_SESSION['username'] = $username;
+            $_SESSION['success'] = "Registration is successful and your account is now pending for approval!";
         }
     }
 }

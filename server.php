@@ -156,5 +156,5 @@ function login($username, $password, $role) {
 
     if (mysqli_num_rows($result) >= 1 ) {
         return true;
-    }
+    } else {}
 }

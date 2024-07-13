@@ -171,3 +171,6 @@ function user_active($username) {
         return false;
     }
 }
+
+//ADD REPORT OR FILL LOGBOOK
+if (isset($_POST['addreport'])) {}

@@ -223,4 +223,6 @@ if(isset($_POST['upload_notice'])) {
 }
 
 //Upload SIWES Acceptance Letter
-if(isset($_POST['upload_acceptance_letter'])) {}
+if(isset($_POST['upload_acceptance_letter'])) {
+    $title = mysqli_real_escape_string($db, $_POST['title']);
+}

@@ -176,4 +176,5 @@ function user_active($username) {
 if (isset($_POST['addreport'])) {
     $date = mysqli_real_escape_string($db, $_POST['date']);
     $wno = mysqli_real_escape_string($db, $_POST['weekno']);
+    $report = mysqli_real_escape_string($db, $_POST['report']);
 }

@@ -311,3 +311,36 @@ if(isset($_POST['upload_acceptance_form'])) {
 		}
 	}
 }
+
+//supervisor login
+if(isset($_POST['sp_login'])) {
+	//
+	$sp_username = mysqli_real_escape_string($db, $_POST['sp_username']);
+	$sp_password = mysqli_real_escape_string($db, $_POST['sp_password']);
+
+	//Form validation
+	if(empty($sp_username)) {array_push($errors, "Username is required!");}
+	if(empty($sp_password)) {array_push($errors, "Password is required!");}
+
+	if(count($errors) == 0)
+    {
+        $sp_hpassword = md5($sp_password);
+        $sql = "SELECT * FROM tbl_supervisor WHERE surname='$sp_username' AND password='$sp_hpassword' LIMIT 1";
+        $res = mysqli_query($db, $sql);
+
+		if(mysqli_num_rows($res) > 0)
+		{
+			$row = mysqli_fetch_assoc($res);
+			if($row['surname'] === $sp_username && $row['password'] === $sp_hpassword)
+			{
+				$_SESSION['supervisor'] = $sp_username;
+				$_SESSION['sp_login'] = true;
+				header('location: supervisor-dashboard.php');
+			}
+		}
+		else
+		{
+			array_push($errors, "Invalid Username or Password, try again!");
+		}
+    }
+}

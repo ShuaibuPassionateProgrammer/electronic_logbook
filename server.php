@@ -427,3 +427,36 @@ if (isset($_POST['nuser'])) {
 		}
 	}
 }
+
+//admin login
+if(isset($_POST['ad_login']))
+{
+	$ad_username = mysqli_real_escape_string($db, $_POST['ad_username']);
+	$ad_password = mysqli_real_escape_string($db, $_POST['ad_password']);
+
+	//Form validation
+	if(empty($ad_username)) {array_push($errors, "Username is required!");}
+	if(empty($ad_password)) {array_push($errors, "Password is required!");}
+
+	if(count($errors) == 0)
+    {
+        $ad_hpassword = md5($ad_password);
+        $sql = "SELECT * FROM tbl_admin WHERE adusername='$ad_username' AND adpassword='$ad_hpassword' LIMIT 1";
+        $result = mysqli_query($db, $sql);
+
+		if(mysqli_num_rows($result) > 0)
+		{
+			$row = mysqli_fetch_assoc($result);
+			if($row['adusername'] === $ad_username && $row['adpassword'] === $ad_hpassword)
+			{
+				$_SESSION['admin'] = $ad_username;
+				$_SESSION['ad_login'] = true;
+				header('location: admin-dashboard.php');
+			}
+		}
+		else
+		{
+			array_push($errors, "Invalid Username or Password, try again!");
+		}
+    }
+}

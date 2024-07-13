@@ -275,3 +275,39 @@ if(isset($_POST['upload_acceptance_form'])) {
 		}
 	}
 }
+
+//Upload SIWES Acceptance Form
+if(isset($_POST['upload_acceptance_form'])) {
+	if(isset($_FILES['image']['name'])) {
+		$imagefile = $_FILES['image']['name'];
+		$imagetemp = $_FILES['image']['tmp_name'];
+
+		$upload = move_uploaded_file($imagetemp, "uploaded-pics/".$imagefile);
+		if($upload) {
+			$regno = $_SESSION['supervisor'];
+			$sql1 = "SELECT * FROM tbl_supervisor";
+			$query1 = mysqli_query($db, $sql1);
+			$row = mysqli_num_rows($query1);
+
+			//if($row == 1) {
+				$record = mysqli_fetch_assoc($query1);
+				$regno = $record['regno'];
+			//}
+
+			$sql2 = "INSERT INTO tbl_acceptance_form(regno, acceptform) VALUES ('$regno', '$imagefile')";
+			$query2 = mysqli_query($db, $sql2);
+
+			if($query2) {
+				$_SESSION['uploaded_pics'] = "Acceptance form Uploaded successfuly!";
+				header("location: supervisor-dashboard.php");
+			}
+			else {
+				$_SESSION['uploaded_pics'] = "Failed to Upload Acceptance form";
+				header("location: supervisor-dashboard.php");
+			}
+		}
+		else {
+			echo "<script>alert('Acceptance Form Upload Failed, try again!');</script>";
+		}
+	}
+}

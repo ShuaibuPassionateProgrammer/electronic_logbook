@@ -394,3 +394,36 @@ if (isset($_POST['spregister'])) {
 		}
     }
 }
+
+// add new user
+if (isset($_POST['nuser'])) {
+	global $db;
+	$userid = mysqli_real_escape_string($db, $_POST['userid']);
+	$password = mysqli_real_escape_string($db, $_POST['password']);
+	$cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
+	$email = mysqli_real_escape_string($db, $_POST['email']);
+	$utype = mysqli_real_escape_string($db, $_POST['utype']);
+	$status = mysqli_real_escape_string($db, $_POST['status']);
+
+	if (empty($userid) || empty($password) || empty($cpassword) || empty($email) || empty($utype)) {
+		array_push($errors, "All the Fields are compulsory");
+	}
+
+	if($password != $cpassword){
+		array_push($errors, "The two password combination are not match");
+	}
+
+	if (count($errors) == 0) {
+		$password = md5($password);
+		$auser = "INSERT INTO users(username, password, email, type, status) VALUES('$userid', '$password', '$email', '$utype', '$status')";
+		$result = mysqli_query($db, $auser);
+		if($result)
+		{
+			array_push($success, "Registration is successful.");
+		}
+		else
+		{
+			array_push($errors, "Registration Failed!");
+		}
+	}
+}

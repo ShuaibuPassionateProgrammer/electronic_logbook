@@ -226,4 +226,6 @@ if(isset($_POST['upload_notice'])) {
 if(isset($_POST['upload_acceptance_letter'])) {
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $body = mysqli_real_escape_string($db, $_POST['body']);
+
+    $sql = "INSERT INTO tbl_acceptance_letter(title, body) VALUES ('$title', '$body')";
 }

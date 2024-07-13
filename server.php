@@ -148,4 +148,6 @@ if(isset($_POST['st_login'])) {
     }
 }
 
-function login($username, $password, $role){}
+function login($username, $password, $role) {
+    global $db;
+}

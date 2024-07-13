@@ -178,4 +178,5 @@ if (isset($_POST['addreport'])) {
     $wno = mysqli_real_escape_string($db, $_POST['weekno']);
     $report = mysqli_real_escape_string($db, $_POST['report']);
     $day = mysqli_real_escape_string($db, $_POST['day']);
+    $stuid = $_SESSION['id'];
 }

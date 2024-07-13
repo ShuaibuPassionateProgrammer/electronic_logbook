@@ -153,4 +153,6 @@ function login($username, $password, $role) {
 
     $password = md5($password);
     $result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password' AND `type` = '$role'");
+
+    if (mysqli_num_rows($result) >= 1 {}
 }

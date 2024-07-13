@@ -184,5 +184,7 @@ if (isset($_POST['addreport'])) {
         array_push($errors, "All the fields are compulsory");
     }
 
-    if (count($errors) == 0) {}
+    if (count($errors) == 0) {
+        $report = "INSERT INTO logbook(stuid, adate, weekno, report, day) VALUES($stuid, '$date', '$wno', '$report', '$day')";
+    }
 }

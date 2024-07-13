@@ -213,5 +213,7 @@ if(isset($_POST['upload_notice'])) {
     $sql = "INSERT INTO tbl_siwes_notice (title, content) VALUES ('$title', '$content')";
     $query = mysqli_query($db, $sql);
 
-    if($query) {}
+    if($query) {
+        $_SESSION['uploaded_notice'] = "Acceptance Letter Uploaded successfuly!";
+    }
 }

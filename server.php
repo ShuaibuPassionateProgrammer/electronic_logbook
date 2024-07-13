@@ -344,3 +344,53 @@ if(isset($_POST['sp_login'])) {
 		}
     }
 }
+
+//supervisor registration
+if (isset($_POST['spregister'])) {
+	global $db;
+    $regno = mysqli_real_escape_string($db, $_POST['regno']);
+    $surname = mysqli_real_escape_string($db, $_POST['surname']);
+    $othersname = mysqli_real_escape_string($db, $_POST['othersname']);
+	$sppassword = mysqli_real_escape_string($db, $_POST['sppassword']);
+	$spcpassword = mysqli_real_escape_string($db, $_POST['spcpassword']);
+    $gender = mysqli_real_escape_string($db, $_POST['gender']);
+    $nationality = mysqli_real_escape_string($db, $_POST['nationality']);
+    $state = mysqli_real_escape_string($db, $_POST['state']);
+    $lga = mysqli_real_escape_string($db, $_POST['lga']);
+    $saddress = mysqli_real_escape_string($db, $_POST['saddress']);
+    $sphoneno = mysqli_real_escape_string($db, $_POST['sphoneno']);
+    $semail = mysqli_real_escape_string($db, $_POST['semail']);
+    $program = mysqli_real_escape_string($db, $_POST['program']);
+    $stream = mysqli_real_escape_string($db, $_POST['stream']);
+    $picture = mysqli_real_escape_string($db, $_POST['picture']);
+    $bank = mysqli_real_escape_string($db, $_POST['bank']);
+    $branch = mysqli_real_escape_string($db, $_POST['branch']);
+    $acctno = mysqli_real_escape_string($db, $_POST['acctno']);
+    $bvn = mysqli_real_escape_string($db, $_POST['bvn']);
+    $nextofkin = mysqli_real_escape_string($db, $_POST['nextofkin']);
+    $address = mysqli_real_escape_string($db, $_POST['address']);
+    $phoneno = mysqli_real_escape_string($db, $_POST['phoneno']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+
+    if (empty($regno) || empty($surname) || empty($othersname) || empty($sppassword) || empty($spcpassword) || empty($gender) || empty($nationality) || empty($state) || empty($lga) || empty($saddress) || empty($sphoneno) || empty($semail) || empty($program) || empty($stream) || empty($picture) || empty($bank) || empty($branch) || empty($acctno) || empty($bvn) || empty($nextofkin) || empty($address) || empty($phoneno) || empty($email)) {
+        array_push($errors, "All fields must requred");
+    }
+
+	if($sppassword != $spcpassword) {
+		array_push($errors, "The Two Password Fields does not match!");
+	}
+
+    if (count($errors) == 0) {
+		$supervisor_password = md5($sppassword);
+        $query = "INSERT INTO tbl_supervisor(regno, surname, others, password, gender, nationality, state, lga, saddress, sphoneno, semail, program, stream, picture, bank, branch, acctno, email, bvn, nextofkin, address, phoneno) VALUES('$regno', '$surname', '$othersname', '$supervisor_password', '$gender', '$nationality', '$state', '$lga', '$saddress', '$sphoneno', '$semail', '$program', '$stream', '$picture', '$bank', '$branch', '$acctno', '$email', '$bvn', '$nextofkin', '$address', '$phoneno')";
+        $result = mysqli_query($db, $query);
+		if($result == true) {
+			$_SESSION['adspregstatus'] = "Registration is successful";
+			header('location: admin-dashboard.php');
+		}
+		else
+		{
+			array_push($success, "Registration Failed");
+		}
+    }
+}

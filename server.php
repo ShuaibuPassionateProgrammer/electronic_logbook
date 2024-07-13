@@ -183,4 +183,6 @@ if (isset($_POST['addreport'])) {
     if (empty($stuid) || empty($date) || empty($wno) || empty($report) || empty($day)) {
         array_push($errors, "All the fields are compulsory");
     }
+
+    if (count($errors) == 0) {}
 }

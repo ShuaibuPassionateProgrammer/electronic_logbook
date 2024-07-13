@@ -234,4 +234,5 @@ if(isset($_POST['upload_acceptance_letter'])) {
         $_SESSION['uploaded_acceptance_letter'] = "Acceptance Letter Uploaded successfuly!";
         header("location: supervisor-dashboard.php");
     }
+    else {}
 }

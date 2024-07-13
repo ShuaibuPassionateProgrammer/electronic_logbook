@@ -179,4 +179,6 @@ if (isset($_POST['addreport'])) {
     $report = mysqli_real_escape_string($db, $_POST['report']);
     $day = mysqli_real_escape_string($db, $_POST['day']);
     $stuid = $_SESSION['id'];
+
+    if (empty($stuid) || empty($date) || empty($wno) || empty($report) || empty($day)) {}
 }

@@ -228,4 +228,5 @@ if(isset($_POST['upload_acceptance_letter'])) {
     $body = mysqli_real_escape_string($db, $_POST['body']);
 
     $sql = "INSERT INTO tbl_acceptance_letter(title, body) VALUES ('$title', '$body')";
+    $query = mysqli_query($db, $sql);
 }

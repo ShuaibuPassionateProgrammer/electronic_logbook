@@ -180,5 +180,7 @@ if (isset($_POST['addreport'])) {
     $day = mysqli_real_escape_string($db, $_POST['day']);
     $stuid = $_SESSION['id'];
 
-    if (empty($stuid) || empty($date) || empty($wno) || empty($report) || empty($day)) {}
+    if (empty($stuid) || empty($date) || empty($wno) || empty($report) || empty($day)) {
+        array_push($errors, "All the fields are compulsory");
+    }
 }

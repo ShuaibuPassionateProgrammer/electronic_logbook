@@ -212,4 +212,6 @@ if(isset($_POST['upload_notice'])) {
 
     $sql = "INSERT INTO tbl_siwes_notice (title, content) VALUES ('$title', '$content')";
     $query = mysqli_query($db, $sql);
+
+    if($query) {}
 }

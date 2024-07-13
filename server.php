@@ -150,4 +150,6 @@ if(isset($_POST['st_login'])) {
 
 function login($username, $password, $role) {
     global $db;
+
+    $password = md5($password);
 }

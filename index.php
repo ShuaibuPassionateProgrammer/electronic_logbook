@@ -1,12 +1,12 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electronic LogBook</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap4.min.css">
+	<title>Homepage</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap4.min.css">
 </head>
 <body>
+	
     <header>
 		<div class="container" style="padding: 35px">
 			<img src="images/student_image.png" style="width: 100px; height: 100px;">
@@ -15,7 +15,7 @@
 		</div>
 	</header>
 
-    <div class="container-fluid">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 				
@@ -54,20 +54,20 @@
 		</div>
 	</div>
 
-    <div class="container pt-5 mb-5">
+	<div class="container pt-5 mb-5">
 		<center>
 			<button class="btn btn-outline-primary" style="width: 30%;" id="getStarted" name="getStarted">Get Started</button>
 		</center>
 	</div>
 
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="js/popper.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap4.min.js"></script>
-    <script>
-        var btnGetStarted = document.getElementById("getStarted");
-        btnGetStarted.addEventListener("click", () => {
-            window.location.href = "home.php";
-        });
-    </script>
+	<script>
+		var btnGetStarted = document.getElementById("getStarted");
+		btnGetStarted.addEventListener("click", function() {
+			window.location.href="home.php";
+		});
+	</script>
 </body>
 </html>

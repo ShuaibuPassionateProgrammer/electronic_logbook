@@ -152,4 +152,5 @@ function login($username, $password, $role) {
     global $db;
 
     $password = md5($password);
+    $result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password' AND `type` = '$role'");
 }

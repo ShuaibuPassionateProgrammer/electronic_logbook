@@ -195,5 +195,6 @@ if (isset($_POST['addreport'])) {
 			</script>
 			<?php
         }
+        else {}
     }
 }

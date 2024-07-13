@@ -217,6 +217,6 @@ if(isset($_POST['upload_notice'])) {
         $_SESSION['uploaded_notice'] = "Acceptance Letter Uploaded successfuly!";
         header("location: supervisor-dashboard.php");
     } else {
-        
+        $_SESSION['uploaded_notice'] = "Failed to Upload Acceptance Letter";
     }
 }

@@ -160,5 +160,7 @@ function login($username, $password, $role) {
         return false;
     }
 
-    function user_active($username) {}
+    function user_active($username) {
+        global $db;
+    }
 }

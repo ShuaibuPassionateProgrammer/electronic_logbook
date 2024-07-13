@@ -173,4 +173,6 @@ function user_active($username) {
 }
 
 //ADD REPORT OR FILL LOGBOOK
-if (isset($_POST['addreport'])) {}
+if (isset($_POST['addreport'])) {
+    $date = mysqli_real_escape_string($db, $_POST['date']);
+}

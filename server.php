@@ -211,4 +211,5 @@ if(isset($_POST['upload_notice'])) {
     $content = mysqli_real_escape_string($db, $_POST['content']);
 
     $sql = "INSERT INTO tbl_siwes_notice (title, content) VALUES ('$title', '$content')";
+    $query = mysqli_query($db, $sql);
 }

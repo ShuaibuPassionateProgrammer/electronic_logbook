@@ -159,15 +159,15 @@ function login($username, $password, $role) {
     } else {
         return false;
     }
+}
 
-    function user_active($username) {
-        global $db;
-        $result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `status` = 'Active'");
+function user_active($username) {
+    global $db;
+    $result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `status` = 'Active'");
 
-        if (mysqli_num_rows($result) >= 1) {
-            return true;
-        } else {
-            return false;
-        }
+    if (mysqli_num_rows($result) >= 1) {
+        return true;
+    } else {
+        return false;
     }
 }

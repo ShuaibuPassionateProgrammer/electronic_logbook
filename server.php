@@ -159,4 +159,6 @@ function login($username, $password, $role) {
     } else {
         return false;
     }
+
+    function user_active($username) {}
 }

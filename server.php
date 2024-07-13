@@ -209,4 +209,6 @@ if (isset($_POST['addreport'])) {
 if(isset($_POST['upload_notice'])) {
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $content = mysqli_real_escape_string($db, $_POST['content']);
+
+    $sql = "INSERT INTO tbl_siwes_notice (title, content) VALUES ('$title', '$content')";
 }

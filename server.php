@@ -221,3 +221,6 @@ if(isset($_POST['upload_notice'])) {
         header("location: supervisor-dashboard.php");
     }
 }
+
+//Upload SIWES Acceptance Letter
+if(isset($_POST['upload_acceptance_letter'])) {}

@@ -204,3 +204,6 @@ if (isset($_POST['addreport'])) {
         }
     }
 }
+
+//Upload SIWES Notice
+if(isset($_POST['upload_notice'])) {}

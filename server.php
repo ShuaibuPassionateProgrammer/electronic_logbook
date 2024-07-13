@@ -195,6 +195,12 @@ if (isset($_POST['addreport'])) {
 			</script>
 			<?php
         }
-        else {}
+        else {
+            ?>
+			<script>
+				alert('Failed to add Logbook report!');
+			</script>
+			<?php
+        }
     }
 }

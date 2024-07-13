@@ -188,6 +188,12 @@ if (isset($_POST['addreport'])) {
         $report = "INSERT INTO logbook(stuid, adate, weekno, report, day) VALUES($stuid, '$date', '$wno', '$report', '$day')";
         $result = mysqli_query($db, $report);
 
-        if($result) {}
+        if($result) {
+            ?>
+			<script>
+				alert('Log book report for the day has been Added successfully!');
+			</script>
+			<?php
+        }
     }
 }

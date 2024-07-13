@@ -208,4 +208,5 @@ if (isset($_POST['addreport'])) {
 //Upload SIWES Notice
 if(isset($_POST['upload_notice'])) {
     $title = mysqli_real_escape_string($db, $_POST['title']);
+    $content = mysqli_real_escape_string($db, $_POST['content']);
 }

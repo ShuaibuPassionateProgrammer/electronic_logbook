@@ -162,5 +162,6 @@ function login($username, $password, $role) {
 
     function user_active($username) {
         global $db;
+        $result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `status` = 'Active'");
     }
 }

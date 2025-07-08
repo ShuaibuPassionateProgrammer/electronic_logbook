@@ -1,437 +1,252 @@
 <?php
 session_start();
-error_reporting(0);
-include('includes/config.php');
+require_once 'includes/config.php'; // Assumes mysqli connection as $db
 
-$errors = array();
-$success = array();
-$s_msg = array();
+$errors = [];
+$success = [];
 
-//Reset Student Password
-if(isset($_POST['sturespass']))
-{
-	?>
-	<script>
-		alert("Initializing Student Password...");
-	</script>
-	<?php
+// ===================== STUDENT PASSWORD RESET (Placeholder) =====================
+if (isset($_POST['sturespass'])) {
+    echo "<script>alert('Initializing Student Password...');</script>";
 }
 
-//Change Student Password
-if(isset($_POST['cpsswd']))
-{
-	?>
-	<script>
-		alert("Initializing Password recovery...");
-	</script>
-	<?php
+// ===================== STUDENT PASSWORD CHANGE (Placeholder) =====================
+if (isset($_POST['cpsswd'])) {
+    echo "<script>alert('Initializing Password recovery...');</script>";
 }
 
-//Delete Student completely
-if(isset($_GET['stu_del']))
-{
-	$del_stu = $_GET['stu_del'];
-	$query = "DELETE FROM tbl_student WHERE id=$del_stu";
-	$query_run = mysqli_query($db, $query);
-
-	if($query_run)
-	{
-		$_SESSION['stu_del_status'] = "Student is permanently deleted!";
-		header('location: student-registration-request.php');
-	}
-}
-
-//Deny or Delete Student
-if(isset($_GET['deny']))
-{
-	$denial_id = $_GET['deny'];
-	$query = "DELETE FROM tbl_student WHERE id=$denial_id";
-	$query_run = mysqli_query($db, $query);
-
-	if($query_run)
-	{
-		$_SESSION['deny_status'] = "Student is Deleted!";
-		header("location: student-registration-request.php");
-	}
-}
-
-//Make Student Active
-if(isset($_GET['approve']))
-{
-	$approval_id = $_GET['approve'];
-	$query = "UPDATE tbl_student SET status = 'active' WHERE id=$approval_id";
-	$query_run = mysqli_query($db, $query);
-
-	if($query_run)
-	{
-		$_SESSION['approve_status'] = "Student is now Active";
-		header('location: student-registration-request.php');
-	}
-}
-
-//student register
-if(isset($_POST['newstudent']))
-{
-	$student_fullname = mysqli_real_escape_string($db, $_POST['student_fullname']);
-	$student_matricno = mysqli_real_escape_string($db, $_POST['student_matricno']);
-	$student_email = mysqli_real_escape_string($db, $_POST['student_email']);
-	$student_level = mysqli_real_escape_string($db, $_POST['student_level']);
-	$student_password = mysqli_real_escape_string($db, $_POST['student_password']);
-	$student_cpassword = mysqli_real_escape_string($db, $_POST['student_cpassword']);
-
-	 //Form validation
-	 if(empty($student_fullname)) {array_push($errors, "Fullname is required!");}
-	 if(empty($student_matricno)) {array_push($errors, "Matric Number is required!");}
-	 if(empty($student_email)) {array_push($errors, "E-Mail is required!");}
-	 if(empty($student_level)) {array_push($errors, "Please select your level");}
-	 if(empty($student_password)) {array_push($errors, "Password is required!");}
-	 if($student_password != $student_cpassword) {array_push($errors, "Passwords not match!");}
- 
-	 //check the db for existing user with same username
-	 $student_check_query = "SELECT * FROM tbl_student WHERE email='$student_email' OR matricno='$student_matricno' LIMIT 1";
-	 $student_check = mysqli_query($db, $student_check_query);
-	 $student = mysqli_fetch_assoc($student_check);
-
-	 if($student)
-	 {
-		if($student['email'] === $student_email)
-		{
-			array_push($errors, "This E-Mail is already registered!");
-		}
-		
-		if($student['matricno'] === $student_matricno)
-		{
-			array_push($errors, "This Matric Number is already registered!");
-		}
-	 }
-
-	 if(count($errors) == 0)
-	 {
-		$hash_password = md5($student_password);
-        $sql = "INSERT INTO tbl_student(fullname, matricno, level, email, password, status) VALUES ('$student_fullname', '$student_matricno', '$student_level', '$student_email', '$hash_password', 'inactive')";
-        mysqli_query($db, $sql);
-        
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "Registration is successful and your account is now pending for approval!";
-        header('location: student-login.php');
-	 }
-}
-
-// Student Login
-if(isset($_POST['st_login'])) {
-    $st_matricno = mysqli_real_escape_string($db, $_POST['st_matricno']);
-    $st_password = mysqli_real_escape_string($db, $_POST['st_password']);
-
-    //Form validation
-    if(empty($st_matricno)) {
-        array_push($errors, "Matric Number is required!");
-    }
-    if(empty($st_password)) {
-        array_push($errors, "Password is required!");
-    }
-
-    if(count($errors) == 0) {
-        $st_hpassword = md5($st_password);
-        $query1 = "SELECT * FROM tbl_student WHERE matricno='$st_matricno' AND password='$st_hpassword' LIMIT 1";
-        $result1 = mysqli_query($db, $query1);
-        $row = mysqli_fetch_assoc($result1);
-
-		$status = $row['status'];
-
-		if($status == 'active') {
-			$_SESSION['id'] = $row['id'];
-			$_SESSION['student'] = $st_matricno;	
-			$_SESSION['st_login'] = true;
-			header('location: student-dashboard.php');
-			exit();
-		}
-		elseif($status == 'inactive') {
-			array_push($errors, "Your account is still pending for approval!");
-		}
-		else {
-			array_push($errors, "Invalid Username or Password, try again!");
-		}
+// ===================== DELETE STUDENT =====================
+if (isset($_GET['stu_del'])) {
+    $id = intval($_GET['stu_del']);
+    $stmt = $db->prepare("DELETE FROM tbl_student WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    if ($stmt->execute()) {
+        $_SESSION['stu_del_status'] = "Student is permanently deleted!";
+        header('Location: student-registration-request.php');
+        exit();
     }
 }
 
-function login($username, $password, $role){
-	global $db;
-	
-	$password = md5($password); 
-	
-	$result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password' AND `type` = '$role'");
-
-	if (mysqli_num_rows($result) >= 1){
-		return true;
-	}
-	else{
-		return false;
-	}
+// ===================== DENY STUDENT =====================
+if (isset($_GET['deny'])) {
+    $id = intval($_GET['deny']);
+    $stmt = $db->prepare("DELETE FROM tbl_student WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    if ($stmt->execute()) {
+        $_SESSION['deny_status'] = "Student is deleted!";
+        header("Location: student-registration-request.php");
+        exit();
+    }
 }
 
-function user_active($username){
-	global $db;
-	$result = mysqli_query($db, "SELECT * FROM `users` WHERE `username` = '$username' AND `status` = 'Active'");
-	if (mysqli_num_rows($result) >= 1){
-		return true;
-	}
-	else{
-		return false;
-	}
-
+// ===================== APPROVE STUDENT =====================
+if (isset($_GET['approve'])) {
+    $id = intval($_GET['approve']);
+    $stmt = $db->prepare("UPDATE tbl_student SET status = 'active' WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    if ($stmt->execute()) {
+        $_SESSION['approve_status'] = "Student is now Active";
+        header('Location: student-registration-request.php');
+        exit();
+    }
 }
 
-//ADD REPORT OR FILL LOGBOOK
+// ===================== STUDENT REGISTRATION =====================
+if (isset($_POST['newstudent'])) {
+    $fullname = trim($_POST['student_fullname']);
+    $matricno = trim($_POST['student_matricno']);
+    $email = trim($_POST['student_email']);
+    $level = trim($_POST['student_level']);
+    $password = $_POST['student_password'];
+    $cpassword = $_POST['student_cpassword'];
+
+    if (empty($fullname)) $errors[] = "Fullname is required!";
+    if (empty($matricno)) $errors[] = "Matric Number is required!";
+    if (empty($email)) $errors[] = "Email is required!";
+    if (empty($level)) $errors[] = "Level is required!";
+    if (empty($password)) $errors[] = "Password is required!";
+    if ($password !== $cpassword) $errors[] = "Passwords do not match!";
+
+    if (empty($errors)) {
+        $stmt = $db->prepare("SELECT * FROM tbl_student WHERE email = ? OR matricno = ? LIMIT 1");
+        $stmt->bind_param('ss', $email, $matricno);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $student = $result->fetch_assoc();
+
+        if ($student) {
+            if ($student['email'] === $email) $errors[] = "This Email is already registered!";
+            if ($student['matricno'] === $matricno) $errors[] = "This Matric Number is already registered!";
+        } else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $stmt = $db->prepare("INSERT INTO tbl_student(fullname, matricno, level, email, password, status) VALUES (?, ?, ?, ?, ?, 'inactive')");
+            $stmt->bind_param('sssss', $fullname, $matricno, $level, $email, $hashed_password);
+            if ($stmt->execute()) {
+                $_SESSION['success'] = "Registration successful, pending approval.";
+                header('Location: student-login.php');
+                exit();
+            } else {
+                $errors[] = "Registration failed. Try again.";
+            }
+        }
+    }
+}
+
+// ===================== STUDENT LOGIN =====================
+if (isset($_POST['st_login'])) {
+    $matricno = trim($_POST['st_matricno']);
+    $password = $_POST['st_password'];
+
+    if (empty($matricno)) $errors[] = "Matric Number is required!";
+    if (empty($password)) $errors[] = "Password is required!";
+
+    if (empty($errors)) {
+        $stmt = $db->prepare("SELECT * FROM tbl_student WHERE matricno = ? LIMIT 1");
+        $stmt->bind_param('s', $matricno);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && password_verify($password, $row['password'])) {
+            if ($row['status'] === 'active') {
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['student'] = $matricno;
+                $_SESSION['st_login'] = true;
+                header('Location: student-dashboard.php');
+                exit();
+            } else {
+                $errors[] = "Your account is pending approval.";
+            }
+        } else {
+            $errors[] = "Invalid credentials.";
+        }
+    }
+}
+
+// ===================== ADD LOGBOOK REPORT =====================
 if (isset($_POST['addreport'])) {
-	$date = mysqli_real_escape_string($db, $_POST['date']);
-	$wno = mysqli_real_escape_string($db, $_POST['weekno']);
-	$report = mysqli_real_escape_string($db, $_POST['report']);
-	$day = mysqli_real_escape_string($db, $_POST['day']);
-	$stuid = $_SESSION['id'];
+    $date = $_POST['date'];
+    $weekno = $_POST['weekno'];
+    $report = $_POST['report'];
+    $day = $_POST['day'];
+    $stuid = $_SESSION['id'] ?? null;
 
-	if (empty($stuid) || empty($date) || empty($wno) || empty($report) || empty($day)) {
-		array_push($errors, "All the fields are compulsory");
-	}
-
-	if (count($errors) == 0) {
-		$report = "INSERT INTO logbook(stuid, adate, weekno, report, day) VALUES($stuid, '$date', '$wno', '$report', '$day')";
-		$result = mysqli_query($db, $report);
-		if($result) {
-			?>
-			<script>
-				alert('Log book report for the day has been Added successfully!');
-			</script>
-			<?php
-		}
-		else {
-			?>
-			<script>
-				alert('Failed to add Logbook report!');
-			</script>
-			<?php
-		}
-	}
-}
-
-//Upload SIWES Notice
-if(isset($_POST['upload_notice'])) {
-	$title = mysqli_real_escape_string($db, $_POST['title']);
-	$content = mysqli_real_escape_string($db, $_POST['content']);
-
-	$sql = "INSERT INTO tbl_siwes_notice (title, content) VALUES ('$title', '$content')";
-	$query = mysqli_query($db, $sql);
-
-	if($query) {
-		$_SESSION['uploaded_notice'] = "Acceptance Letter Uploaded successfuly!";
-		header("location: supervisor-dashboard.php");
-	}
-	else {
-		$_SESSION['uploaded_notice'] = "Failed to Upload Acceptance Letter";
-		header("location: supervisor-dashboard.php");
-	}
-}
-
-//Upload SIWES Acceptance Letter
-if(isset($_POST['upload_acceptance_letter'])) {
-	$title = mysqli_real_escape_string($db, $_POST['title']);
-	$body = mysqli_real_escape_string($db, $_POST['body']);
-
-	$sql = "INSERT INTO tbl_acceptance_letter(title, body) VALUES ('$title', '$body')";
-	$query = mysqli_query($db, $sql);
-
-	if($query) {
-		$_SESSION['uploaded_acceptance_letter'] = "Acceptance Letter Uploaded successfuly!";
-		header("location: supervisor-dashboard.php");
-	}
-	else {
-		$_SESSION['uploaded_acceptance_letter'] = "Failed to Upload Acceptance Letter";
-		header("location: supervisor-dashboard.php");
-	}
-}
-
-//Upload SIWES Acceptance Form
-if(isset($_POST['upload_acceptance_form'])) {
-	if(isset($_FILES['image']['name'])) {
-		$imagefile = $_FILES['image']['name'];
-		$imagetemp = $_FILES['image']['tmp_name'];
-
-		$upload = move_uploaded_file($imagetemp, "uploaded-pics/".$imagefile);
-		if($upload) {
-			$regno = $_SESSION['supervisor'];
-			$sql1 = "SELECT * FROM tbl_supervisor";
-			$query1 = mysqli_query($db, $sql1);
-			$row = mysqli_num_rows($query1);
-
-			//if($row == 1) {
-				$record = mysqli_fetch_assoc($query1);
-				$regno = $record['regno'];
-			//}
-
-			$sql2 = "INSERT INTO tbl_acceptance_form(regno, acceptform) VALUES ('$regno', '$imagefile')";
-			$query2 = mysqli_query($db, $sql2);
-
-			if($query2) {
-				$_SESSION['uploaded_pics'] = "Acceptance form Uploaded successfuly!";
-				header("location: supervisor-dashboard.php");
-			}
-			else {
-				$_SESSION['uploaded_pics'] = "Failed to Upload Acceptance form";
-				header("location: supervisor-dashboard.php");
-			}
-		}
-		else {
-			echo "<script>alert('Acceptance Form Upload Failed, try again!');</script>";
-		}
-	}
-}
-
-//supervisor login
-if(isset($_POST['sp_login'])) {
-	//
-	$sp_username = mysqli_real_escape_string($db, $_POST['sp_username']);
-	$sp_password = mysqli_real_escape_string($db, $_POST['sp_password']);
-
-	//Form validation
-	if(empty($sp_username)) {array_push($errors, "Username is required!");}
-	if(empty($sp_password)) {array_push($errors, "Password is required!");}
-
-	if(count($errors) == 0)
-    {
-        $sp_hpassword = md5($sp_password);
-        $sql = "SELECT * FROM tbl_supervisor WHERE surname='$sp_username' AND password='$sp_hpassword' LIMIT 1";
-        $res = mysqli_query($db, $sql);
-
-		if(mysqli_num_rows($res) > 0)
-		{
-			$row = mysqli_fetch_assoc($res);
-			if($row['surname'] === $sp_username && $row['password'] === $sp_hpassword)
-			{
-				$_SESSION['supervisor'] = $sp_username;
-				$_SESSION['sp_login'] = true;
-				header('location: supervisor-dashboard.php');
-			}
-		}
-		else
-		{
-			array_push($errors, "Invalid Username or Password, try again!");
-		}
+    if (!$stuid || !$date || !$weekno || !$report || !$day) {
+        $errors[] = "All fields are compulsory.";
+    } else {
+        $stmt = $db->prepare("INSERT INTO logbook (stuid, adate, weekno, report, day) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param('issss', $stuid, $date, $weekno, $report, $day);
+        if ($stmt->execute()) {
+            echo "<script>alert('Logbook report added successfully!');</script>";
+        } else {
+            echo "<script>alert('Failed to add logbook report!');</script>";
+        }
     }
 }
 
-//supervisor registration
-if (isset($_POST['spregister'])) {
-	global $db;
-    $regno = mysqli_real_escape_string($db, $_POST['regno']);
-    $surname = mysqli_real_escape_string($db, $_POST['surname']);
-    $othersname = mysqli_real_escape_string($db, $_POST['othersname']);
-	$sppassword = mysqli_real_escape_string($db, $_POST['sppassword']);
-	$spcpassword = mysqli_real_escape_string($db, $_POST['spcpassword']);
-    $gender = mysqli_real_escape_string($db, $_POST['gender']);
-    $nationality = mysqli_real_escape_string($db, $_POST['nationality']);
-    $state = mysqli_real_escape_string($db, $_POST['state']);
-    $lga = mysqli_real_escape_string($db, $_POST['lga']);
-    $saddress = mysqli_real_escape_string($db, $_POST['saddress']);
-    $sphoneno = mysqli_real_escape_string($db, $_POST['sphoneno']);
-    $semail = mysqli_real_escape_string($db, $_POST['semail']);
-    $program = mysqli_real_escape_string($db, $_POST['program']);
-    $stream = mysqli_real_escape_string($db, $_POST['stream']);
-    $picture = mysqli_real_escape_string($db, $_POST['picture']);
-    $bank = mysqli_real_escape_string($db, $_POST['bank']);
-    $branch = mysqli_real_escape_string($db, $_POST['branch']);
-    $acctno = mysqli_real_escape_string($db, $_POST['acctno']);
-    $bvn = mysqli_real_escape_string($db, $_POST['bvn']);
-    $nextofkin = mysqli_real_escape_string($db, $_POST['nextofkin']);
-    $address = mysqli_real_escape_string($db, $_POST['address']);
-    $phoneno = mysqli_real_escape_string($db, $_POST['phoneno']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
+// ===================== UPLOAD SIWES NOTICE =====================
+if (isset($_POST['upload_notice'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
-    if (empty($regno) || empty($surname) || empty($othersname) || empty($sppassword) || empty($spcpassword) || empty($gender) || empty($nationality) || empty($state) || empty($lga) || empty($saddress) || empty($sphoneno) || empty($semail) || empty($program) || empty($stream) || empty($picture) || empty($bank) || empty($branch) || empty($acctno) || empty($bvn) || empty($nextofkin) || empty($address) || empty($phoneno) || empty($email)) {
-        array_push($errors, "All fields must requred");
+    $stmt = $db->prepare("INSERT INTO tbl_siwes_notice (title, content) VALUES (?, ?)");
+    $stmt->bind_param('ss', $title, $content);
+    if ($stmt->execute()) {
+        $_SESSION['uploaded_notice'] = "Notice uploaded successfully!";
+    } else {
+        $_SESSION['uploaded_notice'] = "Failed to upload notice.";
     }
-
-	if($sppassword != $spcpassword) {
-		array_push($errors, "The Two Password Fields does not match!");
-	}
-
-    if (count($errors) == 0) {
-		$supervisor_password = md5($sppassword);
-        $query = "INSERT INTO tbl_supervisor(regno, surname, others, password, gender, nationality, state, lga, saddress, sphoneno, semail, program, stream, picture, bank, branch, acctno, email, bvn, nextofkin, address, phoneno) VALUES('$regno', '$surname', '$othersname', '$supervisor_password', '$gender', '$nationality', '$state', '$lga', '$saddress', '$sphoneno', '$semail', '$program', '$stream', '$picture', '$bank', '$branch', '$acctno', '$email', '$bvn', '$nextofkin', '$address', '$phoneno')";
-        $result = mysqli_query($db, $query);
-		if($result == true) {
-			$_SESSION['adspregstatus'] = "Registration is successful";
-			header('location: admin-dashboard.php');
-		}
-		else
-		{
-			array_push($success, "Registration Failed");
-		}
-    }
+    header("Location: supervisor-dashboard.php");
+    exit();
 }
 
-// add new user
-if (isset($_POST['nuser'])) {
-	global $db;
-	$userid = mysqli_real_escape_string($db, $_POST['userid']);
-	$password = mysqli_real_escape_string($db, $_POST['password']);
-	$cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
-	$email = mysqli_real_escape_string($db, $_POST['email']);
-	$utype = mysqli_real_escape_string($db, $_POST['utype']);
-	$status = mysqli_real_escape_string($db, $_POST['status']);
+// ===================== UPLOAD ACCEPTANCE LETTER =====================
+if (isset($_POST['upload_acceptance_letter'])) {
+    $title = $_POST['title'];
+    $body = $_POST['body'];
 
-	if (empty($userid) || empty($password) || empty($cpassword) || empty($email) || empty($utype)) {
-		array_push($errors, "All the Fields are compulsory");
-	}
-
-	if($password != $cpassword){
-		array_push($errors, "The two password combination are not match");
-	}
-
-	if (count($errors) == 0) {
-		$password = md5($password);
-		$auser = "INSERT INTO users(username, password, email, type, status) VALUES('$userid', '$password', '$email', '$utype', '$status')";
-		$result = mysqli_query($db, $auser);
-		if($result)
-		{
-			array_push($success, "Registration is successful.");
-		}
-		else
-		{
-			array_push($errors, "Registration Failed!");
-		}
-	}
+    $stmt = $db->prepare("INSERT INTO tbl_acceptance_letter (title, body) VALUES (?, ?)");
+    $stmt->bind_param('ss', $title, $body);
+    if ($stmt->execute()) {
+        $_SESSION['uploaded_acceptance_letter'] = "Acceptance letter uploaded!";
+    } else {
+        $_SESSION['uploaded_acceptance_letter'] = "Failed to upload acceptance letter.";
+    }
+    header("Location: supervisor-dashboard.php");
+    exit();
 }
 
-//admin login
-if(isset($_POST['ad_login']))
-{
-	$ad_username = mysqli_real_escape_string($db, $_POST['ad_username']);
-	$ad_password = mysqli_real_escape_string($db, $_POST['ad_password']);
+// ===================== UPLOAD ACCEPTANCE FORM (IMAGE) =====================
+if (isset($_POST['upload_acceptance_form']) && isset($_FILES['image']['name'])) {
+    $imagefile = $_FILES['image']['name'];
+    $imagetemp = $_FILES['image']['tmp_name'];
+    $upload = move_uploaded_file($imagetemp, "uploaded-pics/" . $imagefile);
 
-	//Form validation
-	if(empty($ad_username)) {array_push($errors, "Username is required!");}
-	if(empty($ad_password)) {array_push($errors, "Password is required!");}
+    if ($upload) {
+        $regno = $_SESSION['supervisor'];
+        $stmt = $db->prepare("INSERT INTO tbl_acceptance_form(regno, acceptform) VALUES (?, ?)");
+        $stmt->bind_param('ss', $regno, $imagefile);
+        if ($stmt->execute()) {
+            $_SESSION['uploaded_pics'] = "Acceptance form uploaded!";
+        } else {
+            $_SESSION['uploaded_pics'] = "Failed to upload acceptance form.";
+        }
+    } else {
+        echo "<script>alert('Upload failed. Try again.');</script>";
+    }
+    header("Location: supervisor-dashboard.php");
+    exit();
+}
 
-	if(count($errors) == 0)
-    {
-        $ad_hpassword = md5($ad_password);
-        $sql = "SELECT * FROM tbl_admin WHERE adusername='$ad_username' AND adpassword='$ad_hpassword' LIMIT 1";
-        $result = mysqli_query($db, $sql);
+// ===================== SUPERVISOR LOGIN =====================
+if (isset($_POST['sp_login'])) {
+    $username = $_POST['sp_username'];
+    $password = $_POST['sp_password'];
 
-		if(mysqli_num_rows($result) > 0)
-		{
-			$row = mysqli_fetch_assoc($result);
-			if($row['adusername'] === $ad_username && $row['adpassword'] === $ad_hpassword)
-			{
-				$_SESSION['admin'] = $ad_username;
-				$_SESSION['ad_login'] = true;
-				header('location: admin-dashboard.php');
-			}
-		}
-		else
-		{
-			array_push($errors, "Invalid Username or Password, try again!");
-		}
+    if (empty($username)) $errors[] = "Username is required!";
+    if (empty($password)) $errors[] = "Password is required!";
+
+    if (empty($errors)) {
+        $stmt = $db->prepare("SELECT * FROM tbl_supervisor WHERE surname = ? LIMIT 1");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && password_verify($password, $row['password'])) {
+            $_SESSION['supervisor'] = $username;
+            $_SESSION['sp_login'] = true;
+            header("Location: supervisor-dashboard.php");
+            exit();
+        } else {
+            $errors[] = "Invalid credentials.";
+        }
     }
 }
 
+// ===================== ADMIN LOGIN =====================
+if (isset($_POST['ad_login'])) {
+    $username = $_POST['ad_username'];
+    $password = $_POST['ad_password'];
+
+    if (empty($username)) $errors[] = "Username is required!";
+    if (empty($password)) $errors[] = "Password is required!";
+
+    if (empty($errors)) {
+        $stmt = $db->prepare("SELECT * FROM tbl_admin WHERE adusername = ? LIMIT 1");
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row && password_verify($password, $row['adpassword'])) {
+            $_SESSION['admin'] = $username;
+            $_SESSION['ad_login'] = true;
+            header('Location: admin-dashboard.php');
+            exit();
+        } else {
+            $errors[] = "Invalid credentials.";
+        }
+    }
+}
 ?>

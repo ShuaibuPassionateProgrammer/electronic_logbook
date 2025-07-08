@@ -168,7 +168,7 @@ if (isset($_SESSION['st_login'])) {
                     <a href="student-register.php" class="text-link"><strong>Register</strong></a>
                 </span>
             </div>
-            <a href="index.php" class="text-center">Back to Homepage</a>
+            <center><a href="index.php" class="text-center">Back to Homepage</a></center>
         </div>
     </div>
 

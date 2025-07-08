@@ -31,49 +31,35 @@
             Electronic Logbook for Student Attachment Industrial Work Scheme
         </h1>
     </header>
+<!-- Main Content -->
+<main class="container my-5">
+    <section class="row justify-content-center">
 
-    <!-- Main Content -->
-    <main class="container my-5">
-        <section class="row justify-content-center">
+        <!-- Role Card Template (Repeat this block for each role) -->
+        <?php
+            $roles = [
+                ['title' => 'Student Area', 'image' => 'student_image.png', 'link' => 'student-login.php', 'alt' => 'Student Icon'],
+                ['title' => 'Supervisor Area', 'image' => 'supervisor_image.png', 'link' => 'supervisor-login.php', 'alt' => 'Supervisor Icon'],
+                ['title' => 'Admin Area', 'image' => 'admin_image.png', 'link' => 'admin-login.php', 'alt' => 'Admin Icon'],
+            ];
 
-            <!-- Student Area -->
-            <div class="col-md-4 mb-4">
-                <a href="student-login.php" class="text-decoration-none" aria-label="Student login area">
-                    <div class="card area-card shadow text-center p-4 h-100">
-                        <img src="images/student_image.png" alt="Student Icon">
-                        <div class="mt-3">
-                            <button class="btn btn-outline-primary btn-lg w-50">Student Area</button>
+            foreach ($roles as $role) {
+        ?>
+            <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
+                <a href="<?= $role['link'] ?>" class="text-decoration-none w-100">
+                    <div class="card area-card shadow-sm text-center py-5 px-4 h-100">
+                        <div class="role-image mb-4">
+                            <img src="images/<?= $role['image'] ?>" alt="<?= $role['alt'] ?>">
                         </div>
+                        <button class="btn btn-primary btn-lg rounded-pill px-4"><?= $role['title'] ?></button>
                     </div>
                 </a>
             </div>
+        <?php } ?>
+        
+    </section>
+</main>
 
-            <!-- Supervisor Area -->
-            <div class="col-md-4 mb-4">
-                <a href="supervisor-login.php" class="text-decoration-none" aria-label="Supervisor login area">
-                    <div class="card area-card shadow text-center p-4 h-100">
-                        <img src="images/supervisor_image.png" alt="Supervisor Icon">
-                        <div class="mt-3">
-                            <button class="btn btn-outline-primary btn-lg w-50">Supervisor Area</button>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Admin Area -->
-            <div class="col-md-4 mb-4">
-                <a href="admin-login.php" class="text-decoration-none" aria-label="Admin login area">
-                    <div class="card area-card shadow text-center p-4 h-100">
-                        <img src="images/admin_image.png" alt="Admin Icon">
-                        <div class="mt-3">
-                            <button class="btn btn-outline-primary btn-lg w-50">Admin Area</button>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-        </section>
-    </main>
 
     <!-- Footer -->
     <?php include('includes/footer.php'); ?>

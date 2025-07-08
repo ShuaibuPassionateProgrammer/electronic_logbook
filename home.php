@@ -11,6 +11,36 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        .area-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            background-color: #ffffff;
+            border: none;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .area-card img {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .area-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .area-card button {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
         .area-card img {
             box-shadow: 0 1px 5px rgba(2, 2, 2, 0.2);
             border-radius: 50%;

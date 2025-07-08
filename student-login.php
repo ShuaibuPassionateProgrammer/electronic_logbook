@@ -99,6 +99,35 @@ if (isset($_SESSION['st_login'])) {
                 padding: 30px 20px;
             }
         }
+
+        .input-group-lg .form-control {
+    height: 48px;
+    font-size: 1rem;
+    border-radius: 0;
+}
+
+.input-group-text {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-right: none;
+    padding: 10px 15px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    box-shadow: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #6a06dd;
+    box-shadow: 0 0 0 0.2rem rgba(106, 6, 221, 0.15);
+}
+
+button[type="submit"] {
+    font-weight: 500;
+}
+
     </style>
 </head>
 <body>

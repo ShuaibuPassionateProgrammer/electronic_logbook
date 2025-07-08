@@ -169,6 +169,7 @@ if (isset($_SESSION['st_login'])) {
                 </span>
             </div>
             <center>
+                <br><br>
                 <a href="index.php" class="text-center">Back to Homepage</a>
             </center>
         </div>

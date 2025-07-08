@@ -16,6 +16,7 @@
             border-radius: 50%;
             width: 120px;
             height: 120px;
+            object-fit: cover;
         }
         .area-card .btn {
             border-radius: 20px;
@@ -24,20 +25,22 @@
 </head>
 <body>
 
-    <!-- Page Header -->
-    <div class="text-center mt-5">
-        <h3 class="text-uppercase text-primary font-weight-bold">Electronic Logbook for Student Attachment Industrial Work Scheme</h3>
-    </div>
+    <!-- Header -->
+    <header class="text-center mt-5">
+        <h1 class="text-uppercase text-primary font-weight-bold">
+            Electronic Logbook for Student Attachment Industrial Work Scheme
+        </h1>
+    </header>
 
-    <!-- Role Selection Cards -->
-    <div class="container my-5">
-        <div class="row justify-content-center">
-            
+    <!-- Main Content -->
+    <main class="container my-5">
+        <section class="row justify-content-center">
+
             <!-- Student Area -->
             <div class="col-md-4 mb-4">
-                <a href="student-login.php" class="text-decoration-none">
-                    <div class="card area-card shadow text-center p-4">
-                        <img src="images/student_image.png" alt="Student Login">
+                <a href="student-login.php" class="text-decoration-none" aria-label="Student login area">
+                    <div class="card area-card shadow text-center p-4 h-100">
+                        <img src="images/student_image.png" alt="Student Icon">
                         <div class="mt-3">
                             <button class="btn btn-outline-primary btn-lg w-50">Student Area</button>
                         </div>
@@ -47,9 +50,9 @@
 
             <!-- Supervisor Area -->
             <div class="col-md-4 mb-4">
-                <a href="supervisor-login.php" class="text-decoration-none">
-                    <div class="card area-card shadow text-center p-4">
-                        <img src="images/supervisor_image.png" alt="Supervisor Login">
+                <a href="supervisor-login.php" class="text-decoration-none" aria-label="Supervisor login area">
+                    <div class="card area-card shadow text-center p-4 h-100">
+                        <img src="images/supervisor_image.png" alt="Supervisor Icon">
                         <div class="mt-3">
                             <button class="btn btn-outline-primary btn-lg w-50">Supervisor Area</button>
                         </div>
@@ -59,9 +62,9 @@
 
             <!-- Admin Area -->
             <div class="col-md-4 mb-4">
-                <a href="admin-login.php" class="text-decoration-none">
-                    <div class="card area-card shadow text-center p-4">
-                        <img src="images/admin_image.png" alt="Admin Login">
+                <a href="admin-login.php" class="text-decoration-none" aria-label="Admin login area">
+                    <div class="card area-card shadow text-center p-4 h-100">
+                        <img src="images/admin_image.png" alt="Admin Icon">
                         <div class="mt-3">
                             <button class="btn btn-outline-primary btn-lg w-50">Admin Area</button>
                         </div>
@@ -69,6 +72,11 @@
                 </a>
             </div>
 
-        </div>
-    </div>
-<?php include('includes/footer'); ?>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <?php include('includes/footer.php'); ?>
+
+</body>
+</html>

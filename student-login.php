@@ -134,51 +134,66 @@ if (isset($_SESSION['st_login'])) {
         </div>
     </nav>
 
-    <!-- Login Panel -->
-    <div class="login-wrapper">
-        <h4 class="text-center">Student Sign In</h4>
+    
 
-        <?php include('errors.php'); ?>
-
-        <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?= $_SESSION['success']; ?>
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-            </div>
-            <?php unset($_SESSION['success']); ?>
-        <?php endif; ?>
-
-        <form action="student-login.php" method="POST">
-            <div class="form-group mb-4">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    </div>
-                    <input type="text" name="st_matricno" class="form-control" placeholder="Matric Number" required>
+        <div class="panel-body p-4">
+    <form action="student-login.php" method="POST" novalidate>
+        
+        <!-- Matric Number -->
+        <div class="form-group mb-4">
+            <label for="matricno" class="text-muted">Matric Number</label>
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white border-end-0 rounded-start">
+                        <i class="fa fa-user text-secondary"></i>
+                    </span>
                 </div>
+                <input 
+                    type="text" 
+                    name="st_matricno" 
+                    id="matricno"
+                    class="form-control border-start-0 rounded-end" 
+                    placeholder="Enter your Matric Number" 
+                    required
+                >
             </div>
-
-            <div class="form-group mb-4">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                    </div>
-                    <input type="password" name="st_password" class="form-control" placeholder="Password" required>
-                </div>
-            </div>
-
-            <div class="form-footer mb-4">
-                <a href="student-reset-password.php">Forgot Password?</a>
-                <button type="submit" name="st_login" class="btn btn-primary">
-                    <i class="fa fa-sign-in"></i> Login
-                </button>
-            </div>
-        </form>
-
-        <div class="text-center">
-            Don't have an account? <a href="student-register.php"><strong>Register here</strong></a>
         </div>
-    </div>
+
+        <!-- Password -->
+        <div class="form-group mb-4">
+            <label for="password" class="text-muted">Password</label>
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white border-end-0 rounded-start">
+                        <i class="fa fa-lock text-secondary"></i>
+                    </span>
+                </div>
+                <input 
+                    type="password" 
+                    name="st_password" 
+                    id="password"
+                    class="form-control border-start-0 rounded-end" 
+                    placeholder="Enter your Password" 
+                    required
+                >
+            </div>
+        </div>
+
+        <!-- Extra Space for Messages -->
+        <div class="mb-3" id="message" style="min-height: 20px;">
+            <?php /* echo output_message($error); */ ?>
+        </div>
+
+        <!-- Submit & Forgot -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="student-reset-password.php" class="small">Forgot Password?</a>
+            <button type="submit" name="st_login" class="btn btn-primary px-4 rounded-pill">
+                <i class="fa fa-sign-in"></i> Login
+            </button>
+        </div>
+    </form>
+</div>
+
 
     <?php include('includes/footer.php'); ?>
 

@@ -28,7 +28,7 @@
  </div>
  <div class="collapse navbar-collapse navHeadercollapse">
    <ul class="nav navbar-nav navbar-right">
-     <li class="<?= basename($_SERVER['PHP_SELF'] == 'home')?'active':'';?>"><a href="student-dashboard.php"><span class="fa fa-home"></span> Home</a></li>
+     <li class="<?= basename($_SERVER['PHP_SELF']) == 'home.php' ? 'active' : ''; ?><a href="student-dashboard.php"><span class="fa fa-home"></span> Home</a></li>
 
      <li class="dropdown <?= basename($_SERVER['PHP_SELF'] == 'Logbook')?'active':'';?>">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-book"></span> Logbook<b class="caret"></b></a>

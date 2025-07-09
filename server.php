@@ -94,34 +94,44 @@ if (isset($_POST['newstudent'])) {
 
 // STUDENT LOGIN
 if (isset($_POST['st_login'])) {
-    $matricno = trim($_POST['st_matricno']);
-    $password = $_POST['st_password'];
+    $matricno = trim($_POST['st_matricno'] ?? '');
+    $password = $_POST['st_password'] ?? '';
 
     if (empty($matricno)) $errors[] = "Matric Number is required!";
     if (empty($password)) $errors[] = "Password is required!";
 
     if (empty($errors)) {
         $stmt = $db->prepare("SELECT * FROM tbl_student WHERE matricno = ? LIMIT 1");
-        $stmt->bind_param('s', $matricno);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
 
-        if ($row && password_verify($password, $row['password'])) {
-            if ($row['status'] === 'active') {
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['student'] = $matricno;
-                $_SESSION['st_login'] = true;
-                header('Location: student-dashboard.php');
-                exit();
-            } else {
-                $errors[] = "Your account is pending approval.";
-            }
+        if (!$stmt) {
+            $errors[] = "Database error: failed to prepare statement.";
         } else {
-            $errors[] = "Invalid credentials.";
+            $stmt->bind_param('s', $matricno);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+
+            if ($row) {
+                // Check password
+                if (password_verify($password, $row['password'])) {
+                    if ($row['status'] === 'active') {
+                        // Login success
+                        $_SESSION['id'] = $row['id'];
+                        $_SESSION['student'] = $matricno;
+                        $_SESSION['st_login'] = true;
+                        header('Location: student-dashboard.php');
+                        exit();
+                    } else {
+                        $errors[] = "Your account is pending approval.";
+                    }
+                } else {
+                    $errors[] = "Invalid password.";
+                }
+            } else {
+                $errors[] = "No account found with that Matric Number.";
+            }
         }
     }
-
 }
 
 // ===================== ADD LOGBOOK REPORT =====================

@@ -31,6 +31,12 @@ include('student_auth.php');
   padding-top: 20px; 
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030; /* Bootstrap default navbar z-index */
+}
 
     .dashboard-wrapper {
       max-width: 900px;

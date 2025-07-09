@@ -28,6 +28,7 @@ include('student_auth.php');
   /* Remove or comment out this: */
   /* padding-top: 60px; */
   padding-bottom: 40px;
+  padding-top: 20px; 
 }
 
 

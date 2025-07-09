@@ -92,7 +92,7 @@ if (isset($_POST['newstudent'])) {
     }
 }
 
-// ===================== STUDENT LOGIN =====================
+// STUDENT LOGIN
 if (isset($_POST['st_login'])) {
     $matricno = trim($_POST['st_matricno']);
     $password = $_POST['st_password'];
@@ -121,6 +121,7 @@ if (isset($_POST['st_login'])) {
             $errors[] = "Invalid credentials.";
         }
     }
+
 }
 
 // ===================== ADD LOGBOOK REPORT =====================

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title><?= ucfirst(basename($_SERVER['PHP_SELF'], '.php')); ?> | Electronic Logbook</title>
+<title>Student Register | Electronic Logbook</title>
 
 <!-- Bootstrap & FontAwesome -->
 <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -12,326 +12,239 @@
 <link href="css/style.css" rel="stylesheet" />
 
 <style>
-:root {
-  --primary: #6a06dd;
-  --primary-dark: #5804c2;
-  --bg-light: #f7f8fc;
-  --text-color: #333;
-  --border-radius: 12px;
-  --transition-speed: 0.35s;
-  --input-height: 50px;
-  --font-base: 16px;
-}
+  /* Root colors and fonts */
+  :root {
+    --primary: #6a06dd;
+    --primary-dark: #5804c2;
+    --background-gradient: linear-gradient(135deg, #f9f9ff, #edf1f7);
+    --card-bg: #fff;
+    --card-radius: 12px;
+    --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-body {
-  background: var(--bg-light);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: var(--font-base);
-  margin: 0;
-  padding-top: 70px;
-  color: var(--text-color);
-}
+  body {
+    margin: 0; padding: 0;
+    font-family: var(--font-family);
+    background: var(--background-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
 
-/* Social Bar */
-#social {
-  background: var(--primary);
-  height: 28px;
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-  user-select: none;
-}
+  .register-wrapper {
+    background: var(--card-bg);
+    max-width: 480px;
+    width: 100%;
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow);
+    padding: 40px 35px;
+  }
 
-.social-wrapper .social-icon a {
-  color: #fff;
-  margin-right: 18px;
-  transition: color var(--transition-speed) ease;
-  font-size: 1.1rem;
-  display: inline-block;
-}
+  .logo-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--primary);
+    margin-bottom: 20px;
+    user-select: none;
+  }
 
-.social-wrapper .social-icon a:hover,
-.social-wrapper .social-icon a:focus {
-  color: var(--primary-dark);
-  outline: none;
-}
+  h4 {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+  }
 
-/* Navbar */
-.navbar-default {
-  background: #fff;
-  border: none;
-  box-shadow: 0 2px 8px rgba(106, 6, 221, 0.1);
-  padding: 0.7rem 1.5rem;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 999;
-}
+  form {
+    width: 100%;
+  }
 
-.navbar-header .navbar-brand h3 {
-  color: var(--primary);
-  margin: 0;
-  font-weight: 700;
-  font-size: 1.6rem;
-  letter-spacing: 1px;
-  user-select: none;
-  text-transform: uppercase;
-}
-
-.navbar-toggle {
-  border-color: var(--primary);
-}
-
-.navbar-toggle .icon-bar {
-  background-color: var(--primary);
-}
-
-.navbar-nav > li > a {
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 1rem;
-  transition: color var(--transition-speed);
-}
-
-.navbar-nav > li.active > a,
-.navbar-nav > li > a:hover,
-.navbar-nav > li > a:focus {
-  color: var(--primary-dark);
-  outline: none;
-  background: transparent;
-}
-
-/* Container & Panel */
-.container {
-  max-width: 600px;
-  background: #fff;
-  padding: 2.8rem 3rem;
-  border-radius: var(--border-radius);
-  box-shadow:
-    0 8px 20px rgba(106, 6, 221, 0.1),
-    0 15px 40px rgba(0, 0, 0, 0.05);
-  margin-bottom: 4rem;
-}
-
-.panel-heading h3 {
-  margin: 0 0 2rem 0;
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--primary);
-  user-select: none;
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* Form Styles */
-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem 2rem;
-  justify-content: center;
-}
-
-.form-group {
-  flex: 1 1 45%;
-  min-width: 200px;
-}
-
-.form-group select,
-.form-group input {
-  width: 100%;
-  height: var(--input-height);
-  padding: 0 1.2rem;
-  font-size: 1rem;
-  border-radius: 25px;
-  border: 1.8px solid #d0d3db;
-  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
-  color: #444;
-  outline-offset: 3px;
-}
-
-.form-group input::placeholder {
-  color: #aaa;
-  font-weight: 500;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 8px 2px rgba(106, 6, 221, 0.15);
-  outline-color: var(--primary);
-}
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--primary) 50%),
-    linear-gradient(135deg, var(--primary) 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px);
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 3rem;
-  cursor: pointer;
-}
-
-/* Button */
-button.btn-primary {
-  flex: 1 1 100%;
-  background-color: var(--primary);
-  border: none;
-  font-size: 1.2rem;
-  padding: 1rem 1.5rem;
-  border-radius: 30px;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(106, 6, 221, 0.3);
-  transition:
-    background-color var(--transition-speed),
-    box-shadow var(--transition-speed),
-    transform var(--transition-speed);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  user-select: none;
-}
-
-button.btn-primary .fa-save {
-  font-size: 1.1rem;
-}
-
-button.btn-primary:hover,
-button.btn-primary:focus {
-  background-color: var(--primary-dark);
-  box-shadow: 0 8px 22px rgba(88, 4, 194, 0.6);
-  transform: scale(1.05);
-  outline: none;
-}
-
-/* Error messages */
-<?php /* Assuming errors.php outputs alerts, you can style them here if needed */ ?>
-
-/* Responsive */
-@media (max-width: 480px) {
   .form-group {
-    flex: 1 1 100%;
+    position: relative;
+    margin-bottom: 24px;
   }
-  .container {
-    padding: 2rem 1.5rem;
-    margin-top: 2rem;
+
+  .form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 18px;
   }
-  .navbar-header .navbar-brand h3 {
-    font-size: 1.3rem;
-    padding-left: 10px;
+
+  .form-control {
+    width: 100%;
+    height: 48px;
+    padding-left: 45px;
+    border-radius: 30px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    transition: all 0.3s ease;
   }
-}
+
+  .form-control::placeholder {
+    color: #aaa;
+    font-weight: 500;
+  }
+
+  .form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(106, 6, 221, 0.15);
+    outline: none;
+  }
+
+  select.form-control {
+    padding-left: 15px;
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--primary) 50%),
+      linear-gradient(135deg, var(--primary) 50%, transparent 50%);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .btn-register {
+    width: 100%;
+    border-radius: 30px;
+    background-color: var(--primary);
+    color: white;
+    padding: 14px;
+    font-weight: 600;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    user-select: none;
+  }
+
+  .btn-register:hover,
+  .btn-register:focus {
+    background-color: var(--primary-dark);
+    outline: none;
+  }
+
+  .form-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .form-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .form-footer a:hover,
+  .form-footer a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .alert {
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 520px) {
+    .register-wrapper {
+      padding: 30px 25px;
+    }
+    .form-control {
+      font-size: 14px;
+      height: 44px;
+      padding-left: 40px;
+    }
+    .btn-register {
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- Social Media Bar -->
-<section id="social" class="social">
-  <div class="container">
-    <div class="row">
-      <div class="social-wrapper">
-        <div class="col-md-6">
-          <div class="social-icon">
-            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" aria-label="Google Plus"><i class="fa fa-google-plus"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
-          </div>
-        </div>
+  <div class="register-wrapper">
+    <div class="logo-text">Electronic Logbook</div>
+    <h4>Create New Student Account</h4>
+
+    <!-- Alert Messages -->
+    <?php if (isset($_SESSION['success'])): ?>
+      <div class="alert alert-success alert-dismissible fade show">
+        <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
       </div>
-    </div>
-  </div>       
-</section>
+    <?php endif; ?>
 
-<!-- Navbar -->
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navHeadercollapse" aria-label="Toggle navigation">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="index.php" tabindex="0">
-      <h3>Electronic Log Book</h3>
-    </a>
-  </div>
-  <div class="collapse navbar-collapse navHeadercollapse">
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/eleclogbook"><span class="fa fa-home"></span> Home</a></li>
-      <li><a href="student-login.php"><span class="fa fa-user"></span> Login</a></li>
-      <li class="active"><a href="student-register.php"><span class="fa fa-user-plus"></span> Register</a></li>
-    </ul>
-  </div>
-</nav>
+    <?php include("errors.php"); ?>
 
-<!-- Registration Form Container -->
-<div class="container">
+    <form method="POST" action="student-register.php" novalidate autocomplete="off">
 
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <div class="login-panel panel panel-default" style="border:none;">
-        <div class="panel-heading">
-          <h3 class="panel-title">Create New Student Account</h3>
-        </div>
-        <div class="panel-body tab-content">
-          <?php include("errors.php"); ?>
-          <form class="tab-pane fade in active" method="POST" action="student-register.php" novalidate autocomplete="off">
-            <div class="form-group col-md-6 has-feedback">
-              <input class="form-control" type="text" name="student_fullname" required placeholder="Full Name" autocomplete="off" />
-            </div>
-
-            <div class="form-group col-md-6 has-feedback">
-              <input class="form-control" type="text" name="student_matricno" required placeholder="Matric Number" autocomplete="off" />
-            </div>
-
-            <div class="form-group col-md-6 has-feedback">
-              <input class="form-control" type="email" name="student_email" required placeholder="Email" autocomplete="off" />
-            </div>
-
-            <div class="form-group col-md-6">
-              <select class="form-control" name="student_level" required>
-                <option value="" disabled selected>-- Select Level --</option>
-                <option>100 Level</option>
-                <option>200 Level</option>
-                <option>300 Level</option>
-                <option>400 Level</option>
-                <option>500 Level</option>
-              </select>
-            </div>
-
-            <div class="form-group col-md-6 has-feedback">
-              <input class="form-control" type="password" name="student_password" required placeholder="Password" autocomplete="new-password" />
-            </div>
-
-            <div class="form-group col-md-6 has-feedback">
-              <input class="form-control" type="password" name="student_cpassword" required placeholder="Confirm Password" autocomplete="new-password" />
-            </div>
-
-            <div class="col-md-12 form-group">
-              <button class="btn btn-primary pull-right" type="submit" name="newstudent" aria-label="Register new student account">
-                Register <span class="fa fa-save"></span>
-              </button>
-            </div>
-          </form>
-        </div>
+      <div class="form-group">
+        <i class="fa fa-user"></i>
+        <input type="text" name="student_fullname" class="form-control" placeholder="Full Name" required />
       </div>
+
+      <div class="form-group">
+        <i class="fa fa-id-card"></i>
+        <input type="text" name="student_matricno" class="form-control" placeholder="Matric Number" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fa fa-envelope"></i>
+        <input type="email" name="student_email" class="form-control" placeholder="Email" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fa fa-graduation-cap"></i>
+        <select name="student_level" class="form-control" required>
+          <option value="" disabled selected>-- Select Level --</option>
+          <option>100 Level</option>
+          <option>200 Level</option>
+          <option>300 Level</option>
+          <option>400 Level</option>
+          <option>500 Level</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" name="student_password" class="form-control" placeholder="Password" required />
+      </div>
+
+      <div class="form-group">
+        <i class="fa fa-lock"></i>
+        <input type="password" name="student_cpassword" class="form-control" placeholder="Confirm Password" required />
+      </div>
+
+      <button type="submit" name="newstudent" class="btn-register">
+        <i class="fa fa-user-plus"></i> Register
+      </button>
+    </form>
+
+    <div class="form-footer">
+      Already have an account? <a href="student-login.php">Sign In</a><br />
+      <a href="index.php" style="margin-top: 8px; display: inline-block;">Back to Homepage</a>
     </div>
   </div>
 
-</div>
+  <?php include('includes/footer.php'); ?>
 
-<?php include('includes/footer.php'); ?>
-
-<!-- Scripts -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+  <!-- Scripts -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

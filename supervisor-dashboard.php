@@ -31,35 +31,53 @@ function showAlert($sessionKey, $alertClass = 'alert-info') {
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
-        .dashboard-panel {
-            background-color: #6a06dd;
-            color: white;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+        .dashboard-card {
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            padding: 20px 0;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            border-radius: 10px;
+            border: 1px solid #6a06dd;
+            background-color: white;
+            color: #6a06dd;
             text-align: center;
+            padding: 30px 20px;
             font-weight: 600;
             text-transform: uppercase;
             user-select: none;
+            box-shadow: 0 0 10px rgba(106, 6, 221, 0.1);
         }
-        .dashboard-panel:hover {
-            background-color: #5705b9;
-            text-decoration: none;
+        .dashboard-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .dashboard-card:hover {
+            background-color: #6a06dd;
             color: white;
+            box-shadow: 0 8px 20px rgba(106, 6, 221, 0.4);
+            transform: translateY(-4px);
+            text-decoration: none;
+        }
+        h3, h5 {
+            color: #6a06dd;
+            text-transform: uppercase;
+        }
+        .header-section {
+            margin-top: 60px;
+            margin-bottom: 40px;
         }
     </style>
 </head>
 <body>
 
-<div class="container mt-5">
+<div class="container">
 
-    <div class="row mb-4">
-        <div class="col-12 text-center">
-            <h3 class="text-uppercase text-primary" style="color: #6a06dd;">Welcome to Supervisor Dashboard</h3>
-            <h5 class="text-uppercase text-primary" style="color: #6a06dd;">Electronic Log Book for Student Attachment Industrial Work Scheme</h5>
-        </div>
+    <div class="header-section text-center">
+        <h3>Welcome to Supervisor Dashboard</h3>
+        <h5>Electronic Log Book for Student Attachment Industrial Work Scheme</h5>
     </div>
 
     <?php 
@@ -68,32 +86,44 @@ function showAlert($sessionKey, $alertClass = 'alert-info') {
         showAlert('uploaded_notice', 'alert-success');
     ?>
 
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
+    <div class="row g-4 justify-content-center">
 
-            <a href="view-student-activities.php" class="dashboard-panel d-block mb-3">
-                <i class="fa fa-list-alt"></i> View Student Activities
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="view-student-activities.php" class="dashboard-card d-block">
+                <i class="fa fa-list-alt"></i>
+                View Student Activities
             </a>
-
-            <a href="upload-siwes-notice.php" class="dashboard-panel d-block mb-3">
-                <i class="fa fa-upload"></i> Upload SIWES Notice
-            </a>
-
-            <a href="upload-siwes-acceptance-form.php" class="dashboard-panel d-block mb-3">
-                <i class="fa fa-upload"></i> Upload SIWES Acceptance Form
-            </a>
-
-            <a href="upload-siwes-acceptance-letter.php" class="dashboard-panel d-block mb-3">
-                <i class="fa fa-upload"></i> Upload SIWES Acceptance Letter
-            </a>
-
-            <a href="supervisor-logout.php" class="dashboard-panel d-block mb-3">
-                <i class="fa fa-sign-out"></i> Logout
-            </a>
-
         </div>
-    </div>
 
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="upload-siwes-notice.php" class="dashboard-card d-block">
+                <i class="fa fa-upload"></i>
+                Upload SIWES Notice
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="upload-siwes-acceptance-form.php" class="dashboard-card d-block">
+                <i class="fa fa-upload"></i>
+                Upload SIWES Acceptance Form
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="upload-siwes-acceptance-letter.php" class="dashboard-card d-block">
+                <i class="fa fa-upload"></i>
+                Upload SIWES Acceptance Letter
+            </a>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="supervisor-logout.php" class="dashboard-card d-block">
+                <i class="fa fa-sign-out"></i>
+                Logout
+            </a>
+        </div>
+
+    </div>
 </div>
 
 <script src="js/bootstrap.bundle.min.js"></script>

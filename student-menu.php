@@ -63,71 +63,69 @@
 </nav>
 
 <style>
-  /* Social Bar Styling */
-  .social {
-    background: #5a3fc0;
-    padding: 10px 0;
-  }
+/* Navbar Base */
+.navbar {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-  .social-link {
-    color: #fff;
-    margin-left: 15px;
-    font-size: 18px;
-    transition: color 0.3s;
-  }
+/* Brand */
+.navbar-brand {
+  color: #5a3fc0 !important;
+  font-weight: 600;
+  font-size: 20px;
+  padding-left: 40px;
+}
 
-  .social-link:hover {
-    color: #d1b3ff;
-  }
+/* Nav Items */
+.navbar-nav > li > a {
+  font-size: 16px;
+  color: #333;
+  padding: 14px 22px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
 
-  /* Navbar Styling */
-  .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
-    border: none;
-    background: #fff;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  }
+/* Active & Hover States */
+.navbar-nav > li.active > a,
+.navbar-nav > li > a:hover {
+  background: #ebe6fb;
+  color: #5a3fc0 !important;
+  border-radius: 4px;
+  box-shadow: inset 0 0 3px rgba(90, 63, 192, 0.15);
+}
 
-  .navbar-brand {
-    color: #5a3fc0 !important;
-    font-weight: 700;
-    font-size: 20px;
-    padding-left: 40px;
-  }
+/* Dropdown Styling */
+.dropdown-menu {
+  font-size: 15px;
+  padding: 6px 0;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
 
-  .navbar-nav > li > a {
-    font-size: 16px;
-    color: #333;
-    padding: 15px 22px;
-    font-weight: 500;
-  }
+/* Dropdown Item */
+.dropdown-menu > li > a {
+  padding: 10px 20px;
+  color: #444;
+  transition: background 0.3s ease;
+}
 
-  .navbar-nav > li.active > a,
-  .navbar-nav > li > a:hover {
-    background: #5a3fc0;
-    color: #fff !important;
-    border-radius: 4px;
-  }
+/* Dropdown Hover */
+.dropdown-menu > li > a:hover {
+  background: #f7f4fc;
+  color: #5a3fc0;
+  border-radius: 3px;
+}
 
-  .dropdown-menu {
-    font-size: 15px;
-    padding: 8px 0;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  }
+/* Divider */
+.divider {
+  margin: 6px 0;
+  background-color: #e5e5e5;
+}
 
-  .dropdown-menu > li > a {
-    padding: 10px 20px;
-    color: #444;
-  }
-
-  .dropdown-menu > li > a:hover {
-    background: #f2f2fa;
-    color: #5a3fc0;
-  }
-
-  .divider {
-    margin: 6px 0;
-    background-color: #e5e5e5;
-  }
 </style>

@@ -1,5 +1,5 @@
 <?php
 session_start();
 unset($_SESSION['st_login']);
-header('location: /eleclogbook');
+header('location: student-login.php');
 ?>

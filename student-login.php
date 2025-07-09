@@ -255,7 +255,16 @@ if (isset($_SESSION['st_login'])) {
         <?php endif; ?>
 
         <!-- Error Messages -->
-        <?php include('errors.php'); ?>
+       <?php if(!empty($errors)): ?>
+        <div class="alert alert-danger">
+            <ul>
+            <?php foreach($errors as $err): ?>
+                <li><?= htmlspecialchars($err) ?></li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+
 
         <!-- Login Form -->
         <form action="student-login.php" method="POST" novalidate>

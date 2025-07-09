@@ -138,7 +138,7 @@ if (isset($_SESSION['ad_login'])) {
             </div>
 
             <div class="back-link">
-                <p>Back to Homepage? <a href="/eleclogbook"><strong>Click Here</strong></a></p>
+                <p>Back to Homepage? <a href="index.php"><strong>Click Here</strong></a></p>
             </div>
         </div>
     </div>

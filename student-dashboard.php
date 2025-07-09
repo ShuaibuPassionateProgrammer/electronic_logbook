@@ -22,12 +22,14 @@ include('student_auth.php');
   <style>
     /* Body & Container */
     body {
-      background-color: #f7f9fc;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      padding-top: 60px; /* for fixed menu */
-      padding-bottom: 40px;
-    }
+  background-color: #f7f9fc;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  /* Remove or comment out this: */
+  /* padding-top: 60px; */
+  padding-bottom: 40px;
+}
+
 
     .dashboard-wrapper {
       max-width: 900px;

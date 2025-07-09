@@ -1,5 +1,7 @@
 <?php
 include('server.php');
+
+// Redirect logged-in students to their dashboard
 if (isset($_SESSION['st_login'])) {
     header('Location: student-dashboard.php');
     exit();
@@ -21,8 +23,6 @@ if (isset($_SESSION['st_login'])) {
         body {
             background: linear-gradient(135deg, #f9f9ff, #edf1f7);
             font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
         .login-wrapper {
@@ -30,28 +30,36 @@ if (isset($_SESSION['st_login'])) {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px 15px;
+            padding: 2rem 1rem;
         }
 
         .login-card {
-            background: #ffffff;
+            background-color: #fff;
             border-radius: 12px;
-            padding: 40px 35px;
+            padding: 2.5rem 2rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             max-width: 450px;
             width: 100%;
         }
 
-        .login-card h4 {
+        .logo-text {
+            font-weight: 600;
+            color: #6a06dd;
+            font-size: 1.25rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
             font-weight: 600;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
             color: #333;
         }
 
         .form-group {
             position: relative;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .form-group i {
@@ -67,7 +75,7 @@ if (isset($_SESSION['st_login'])) {
             padding-left: 45px;
             border-radius: 30px;
             border: 1px solid #ced4da;
-            transition: all 0.3s;
+            transition: border-color 0.3s ease;
         }
 
         .form-control:focus {
@@ -90,10 +98,13 @@ if (isset($_SESSION['st_login'])) {
             background-color: #5804c2;
         }
 
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
         .text-link {
-            display: inline-block;
-            margin-top: 12px;
-            font-size: 14px;
+            font-size: 0.9rem;
             color: #6a06dd;
             text-decoration: none;
         }
@@ -103,21 +114,15 @@ if (isset($_SESSION['st_login'])) {
         }
 
         .alert {
+            font-size: 0.9rem;
             border-radius: 8px;
-            font-size: 14px;
         }
 
-        .form-footer {
-            margin-top: 20px;
+        .back-link {
+            display: block;
             text-align: center;
-        }
-
-        .logo-text {
-            font-weight: 600;
-            color: #6a06dd;
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -127,51 +132,45 @@ if (isset($_SESSION['st_login'])) {
         <div class="login-card">
 
             <div class="logo-text">Electronic Logbook</div>
-
             <h4>Student Sign In</h4>
 
-            <!-- Alert Messages -->
+            <!-- Success Message -->
             <?php if (isset($_SESSION['success'])): ?>
-                <div class="alert alert-success alert-dismissible fade show">
-                    <?= $_SESSION['success']; unset($_SESSION['success']); ?>
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
                 </div>
             <?php endif; ?>
 
+            <!-- Error Messages -->
             <?php include('errors.php'); ?>
 
             <!-- Login Form -->
             <form action="student-login.php" method="POST" novalidate>
-
-                <!-- Matric Number -->
                 <div class="form-group">
                     <i class="fa fa-user"></i>
                     <input type="text" name="st_matricno" class="form-control" placeholder="Matric Number" required>
                 </div>
 
-                <!-- Password -->
                 <div class="form-group">
                     <i class="fa fa-lock"></i>
                     <input type="password" name="st_password" class="form-control" placeholder="Password" required>
                 </div>
 
-                <!-- Login Button -->
                 <button type="submit" name="st_login" class="btn btn-login">
                     <i class="fa fa-sign-in"></i> Login
                 </button>
             </form>
 
-            <!-- Footer Links -->
             <div class="form-footer">
                 <a href="student-reset-password.php" class="text-link">Forgot Password?</a><br>
-                <span style="font-size: 14px;">Don't have an account? 
+                <span>Don't have an account? 
                     <a href="student-register.php" class="text-link"><strong>Register</strong></a>
                 </span>
             </div>
-            <center>
-                <br>
-                <a href="index.php" class="text-center">Back to Homepage</a>
-            </center>
+
+            <a href="index.php" class="back-link">Back to Homepage</a>
+
         </div>
     </div>
 

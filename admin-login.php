@@ -1,78 +1,149 @@
-<?php include("server.php");?>
+<?php include("server.php"); ?>
 <?php
-if(isset($_SESSION['ad_login']))
-{
+if (isset($_SESSION['ad_login'])) {
     header('location: admin-dashboard.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Admin Login | Page</title>
- 	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Page</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .header-bar {
+            background: #6a06dd;
+            height: 8px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 40px;
+            color: #6a06dd;
+            font-size: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .login-panel {
+            margin-top: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 6px;
+        }
+
+        .panel-heading {
+            background-color: #6a06dd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .panel-title {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .panel-body {
+            padding: 25px;
+            background-color: #ffffff;
+        }
+
+        .form-control {
+            height: 45px;
+            font-size: 15px;
+        }
+
+        .btn-primary {
+            background-color: #6a06dd;
+            border-color: #6a06dd;
+            border-radius: 4px;
+        }
+
+        .btn-primary:hover {
+            background-color: #4f04b3;
+        }
+
+        .form-footer {
+            margin-top: 15px;
+        }
+
+        .back-link {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        #message li {
+            list-style-type: none;
+            color: red;
+        }
+    </style>
 </head>
 <body>
 
-    <section id="social" class="social" style="background: #6a06dd;height: 20px;">
-	 <div class="container" style="margin-top: -15px;">
-        <div class="row" style="margin-bottom: 65px;">
-            <div class="col-md-12 text-center margin-top: 30px;"><h3 style="text-transform: uppercase; color: #6a06dd;">electronic log book for student attachment industrial work scheme</h3></div>
-        </div>
+<div class="header-bar"></div>
 
+<div class="container">
+    <h3 class="page-title">Electronic Logbook for Student Industrial Work Scheme</h3>
+
+    <div class="row justify-content-center">
         <div class="col-md-4 col-md-offset-4">
-            <div class="row justify-content-center" style="margin-bottom: 65px; text-align: center">
-                <?php include('errors.php');?>
-            </div>
-        </div>
+            <?php include('errors.php'); ?>
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admin Login</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="admin-login.php" method="POST">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                name="ad_username" 
+                                placeholder="Username" 
+                                required>
+                        </div>
 
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">Admin Sign In</h3>
-                    </div>
-                    <div class="panel-body">
-                        <!--role="form"-->
-                        <form action="admin-login.php" method="POST">
-                            <fieldset>
-                               <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" name="ad_username" placeholder="Username" required>
-                                </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                name="ad_password" 
+                                placeholder="Password" 
+                                required>
+                        </div>
 
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                    <input type="password" class="form-control" name="ad_password" placeholder="Password" required>
-                                </div>
-                                
-                                <div class="checkbox">
-                                    <label>
-                                        <div id="message"><?php /*echo output_message($error);*/ ?></div>
-                                    </label>
-                                    <style>
-                                        #message li{
-                                            list-style-type:none;
-                                            color:red;
-                                        }
-                                    </style>
-                                </div>
-
-                                <div class="form-group">
-                                    <a href="reset-password.php">Forget Password?</a>
-                                    <button class="btn btn-primary pull-right" type="submit" name="ad_login"><span class="fa fa-user"></span>&nbsp;Login &nbsp;</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <a href="reset-password.php">Forgot Password?</a>
+                            <button 
+                                type="submit" 
+                                name="ad_login" 
+                                class="btn btn-primary pull-right">
+                                <i class="fa fa-sign-in"></i> Login
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
 
-        <div class="row" style="margin-bottom: 65px;">
-            <div class="col-md-12 text-center">Back to Homepage?<a href="/eleclogbook"><b>Click Here</b></a></div>
+            <div class="back-link">
+                <p>Back to Homepage? <a href="/eleclogbook"><strong>Click Here</strong></a></p>
+            </div>
         </div>
-    </section>
-<?php include('includes/footer.php');?>
+    </div>
+</div>
+
+<?php include('includes/footer.php'); ?>
+</body>
+</html>

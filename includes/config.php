@@ -1,20 +1,13 @@
 <?php
-// Database configuration
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$database = 'eleclogbook';
+// Change these values to your own database settings
+$db_host = "localhost";
+$db_user = "your_db_user";
+$db_pass = "your_db_password";
+$db_name = "your_db_name";
 
-// Establish a connection to the database
-$db = new mysqli($host, $user, $password, $database);
+$db = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// Check for connection errors
 if ($db->connect_error) {
-    // Log the error internally (for development)
-    error_log("Database connection failed: " . $db->connect_error);
-
-    // Show user-friendly error message
-    echo "<span style='color: red; font-weight: bold; font-size: 20px;'>Unable to connect to the database. Please try again later.</span>";
-    exit; // Stop script execution if the connection fails
+    die("Database connection failed: " . $db->connect_error);
 }
 ?>

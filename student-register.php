@@ -112,6 +112,37 @@
     cursor: pointer;
   }
 
+  .form-group {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.form-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 18px;
+  pointer-events: none; /* So icon doesn’t block select clicks */
+}
+
+.form-group select.form-control {
+  padding-left: 45px; /* same space as inputs with icons */
+  height: 48px;
+  border-radius: 30px;
+  border: 1px solid #ced4da;
+  font-size: 16px;
+  appearance: none;
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease;
+}
+
+
   .btn-register {
     width: 100%;
     border-radius: 30px;

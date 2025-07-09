@@ -16,7 +16,7 @@
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navHeadercollapse" aria-expanded="false">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navHeadercollapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
       </button>
@@ -30,9 +30,7 @@
         </li>
 
         <li class="dropdown <?= (in_array(basename($_SERVER['PHP_SELF']), ['add-report.php','logbook.php'])) ? 'active' : '' ?>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-book"></i> Logbook <span class="caret"></span>
-          </a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Logbook <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="add-report.php"><i class="fa fa-plus"></i> Add Daily Report</a></li>
             <li role="separator" class="divider"></li>
@@ -41,9 +39,7 @@
         </li>
 
         <li class="dropdown <?= (in_array(basename($_SERVER['PHP_SELF']), ['siwes-letter.php','acceptance-form.php','notice.php'])) ? 'active' : '' ?>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-ellipsis-h"></i> Others <span class="caret"></span>
-          </a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i> Others <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="siwes-letter.php"><i class="fa fa-download"></i> SIWES Letter</a></li>
             <li role="separator" class="divider"></li>
@@ -54,9 +50,7 @@
         </li>
 
         <li class="dropdown <?= (in_array(basename($_SERVER['PHP_SELF']), ['student-change-password.php','student-logout.php'])) ? 'active' : '' ?>">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user"></i> Account <span class="caret"></span>
-          </a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Account <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="student-change-password.php"><i class="fa fa-lock"></i> Change Password</a></li>
             <li role="separator" class="divider"></li>
@@ -69,72 +63,69 @@
 </nav>
 
 <style>
-  /* Social bar styling */
+  /* Social Bar Styling */
   .social {
     background: #5a3fc0;
-    padding: 8px 0;
+    padding: 10px 0;
   }
-  .social-icon .social-link {
+
+  .social-link {
     color: #fff;
-    margin-left: 12px;
+    margin-left: 15px;
     font-size: 18px;
     transition: color 0.3s;
   }
-  .social-icon .social-link:first-child {
-    margin-left: 0;
-  }
-  .social-icon .social-link:hover {
+
+  .social-link:hover {
     color: #d1b3ff;
   }
 
-  /* Navbar styling */
+  /* Navbar Styling */
   .navbar {
-    border: none;
-    border-radius: 0;
     margin-bottom: 0;
+    border-radius: 0;
+    border: none;
     background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
   }
-  .navbar .navbar-brand {
-    color: #5a3fc0;
+
+  .navbar-brand {
+    color: #5a3fc0 !important;
     font-weight: 700;
-    font-size: 1.6rem;
+    font-size: 20px;
     padding-left: 40px;
-    transition: color 0.3s;
   }
-  .navbar .navbar-brand:hover {
-    color: #451d99;
-    text-decoration: none;
-  }
+
   .navbar-nav > li > a {
-    font-size: 1rem;
-    color: #444;
-    padding: 15px 20px;
-    transition: color 0.3s;
+    font-size: 16px;
+    color: #333;
+    padding: 15px 22px;
+    font-weight: 500;
   }
-  .navbar-nav > .active > a {
-    color: #fff;
+
+  .navbar-nav > li.active > a,
+  .navbar-nav > li > a:hover {
     background: #5a3fc0;
+    color: #fff !important;
     border-radius: 4px;
   }
-  .navbar-nav > li > a:hover,
-  .navbar-nav > li > a:focus {
-    color: #5a3fc0;
-    background: transparent;
-  }
+
   .dropdown-menu {
-    border-radius: 4px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    font-size: 15px;
+    padding: 8px 0;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   }
+
   .dropdown-menu > li > a {
-    color: #444;
-    font-size: 0.95rem;
     padding: 10px 20px;
+    color: #444;
   }
+
   .dropdown-menu > li > a:hover {
-    background: #f1eefd;
+    background: #f2f2fa;
     color: #5a3fc0;
   }
+
   .divider {
     margin: 6px 0;
     background-color: #e5e5e5;

@@ -76,56 +76,57 @@
 .navbar-brand {
   color: #5a3fc0 !important;
   font-weight: 600;
-  font-size: 20px;
-  padding-left: 40px;
+  font-size: 18px;
+  padding-left: 25px;
 }
 
 /* Nav Items */
 .navbar-nav > li > a {
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
-  padding: 14px 22px;
+  padding: 10px 16px; /* Reduced vertical & horizontal padding */
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
   border-radius: 4px;
 }
 
 /* Active & Hover States */
 .navbar-nav > li.active > a,
 .navbar-nav > li > a:hover {
-  background: #ebe6fb;
+  background: #f1edfc;
   color: #5a3fc0 !important;
   border-radius: 4px;
-  box-shadow: inset 0 0 3px rgba(90, 63, 192, 0.15);
+  box-shadow: inset 0 0 2px rgba(90, 63, 192, 0.1);
 }
 
-/* Dropdown Styling */
+/* Dropdown Menu */
 .dropdown-menu {
-  font-size: 15px;
-  padding: 6px 0;
+  font-size: 14.5px;
+  padding: 4px 0;
   border-radius: 4px;
   border: none;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
 }
 
 /* Dropdown Item */
 .dropdown-menu > li > a {
-  padding: 10px 20px;
+  padding: 8px 18px;  /* Less bulky dropdown items */
   color: #444;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease-in-out;
 }
 
 /* Dropdown Hover */
 .dropdown-menu > li > a:hover {
-  background: #f7f4fc;
+  background: #f6f3fc;
   color: #5a3fc0;
   border-radius: 3px;
 }
 
-/* Divider */
+/* Divider Line */
 .divider {
-  margin: 6px 0;
+  margin: 4px 0;
   background-color: #e5e5e5;
 }
+
 
 </style>

@@ -28,55 +28,9 @@ if (isset($_SESSION['st_login'])) {
             --transition-speed: 0.35s;
         }
 
-        /* Base Reset */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
         html {
-    font-size: 16px; /* Base font size */
-}
-
-.login-card {
-    max-width: 500px; /* Wider card */
-    padding: 3.5rem 3rem; /* More padding for spaciousness */
-    transform: scale(0.95);
-    opacity: 0;
-    animation: zoomFadeIn 0.6s ease forwards;
-}
-
-.logo-text {
-    font-size: 2rem; /* Larger logo text */
-    letter-spacing: 1.5px;
-    margin-bottom: 2rem;
-}
-
-h4 {
-    font-size: 1.5rem; /* Bigger heading */
-    margin-bottom: 3rem;
-}
-
-.form-control {
-    font-size: 1.1rem; /* Slightly bigger input text */
-    height: 52px; /* A bit taller inputs */
-    padding-left: 50px; /* Adjust padding to keep space for icons */
-}
-
-.btn-login {
-    font-size: 1.2rem; /* Larger button text */
-    padding: 1rem;
-}
-
-.form-footer {
-    font-size: 1rem; /* Increase footer text */
-    margin-top: 2.5rem;
-}
-
-.back-link {
-    font-size: 1rem; /* Bigger back link text */
-    margin-top: 3rem;
-}
-
+            font-size: 16px; /* Base font size */
+        }
 
         body {
             margin: 0;
@@ -89,24 +43,23 @@ h4 {
             align-items: center;
             padding: 1rem;
             overflow-x: hidden;
-            /* Smooth zoom animation container */
         }
 
-        /* Zoom-in on page load */
         .login-card {
             background: #fff;
             border-radius: var(--border-radius);
             box-shadow:
                 0 10px 15px rgba(0, 0, 0, 0.07),
                 0 20px 40px rgba(0, 0, 0, 0.05);
-            max-width: 420px;
+            max-width: 500px; /* Wider */
             width: 100%;
-            padding: 3rem 2.5rem;
+            padding: 3.5rem 3rem; /* More padding */
             transform: scale(0.95);
             opacity: 0;
             animation: zoomFadeIn 0.6s ease forwards;
             transition: box-shadow var(--transition-speed) ease;
         }
+
         @keyframes zoomFadeIn {
             to {
                 opacity: 1;
@@ -121,12 +74,12 @@ h4 {
         }
 
         .logo-text {
-            font-size: 1.75rem;
+            font-size: 2rem; /* Bigger logo text */
             font-weight: 700;
             color: var(--primary);
             text-align: center;
-            margin-bottom: 1.5rem;
-            letter-spacing: 1.3px;
+            margin-bottom: 2rem;
+            letter-spacing: 1.5px;
             user-select: none;
             text-transform: uppercase;
             text-shadow: 0 2px 4px rgba(106, 6, 221, 0.2);
@@ -134,9 +87,9 @@ h4 {
 
         h4 {
             font-weight: 600;
-            font-size: 1.3rem;
+            font-size: 1.5rem; /* Bigger heading */
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             color: var(--text-color);
         }
 
@@ -145,7 +98,6 @@ h4 {
             margin-bottom: 1.6rem;
         }
 
-        /* Icon styling */
         .form-group i {
             position: absolute;
             left: 18px;
@@ -157,14 +109,13 @@ h4 {
             transition: color var(--transition-speed) ease;
         }
 
-        /* Input Styling */
         .form-control {
             width: 100%;
-            height: 48px;
-            padding-left: 48px;
+            height: 52px; /* Taller inputs */
+            padding-left: 50px; /* Adjusted padding */
             border-radius: 30px;
             border: 1.8px solid #d0d3db;
-            font-size: 1rem;
+            font-size: 1.1rem; /* Larger font */
             color: #444;
             transition:
                 border-color var(--transition-speed) ease,
@@ -173,24 +124,21 @@ h4 {
             outline-color: transparent;
         }
 
-        /* Input Focus & Interaction */
         .form-control:focus {
             border-color: var(--primary);
             box-shadow: 0 0 8px 2px rgba(106, 6, 221, 0.15);
             outline-color: var(--primary);
         }
 
-        /* Change icon color on focus */
         .form-control:focus + i,
         .form-group input:not(:placeholder-shown) + i {
             color: var(--primary);
         }
 
-        /* Button Styling */
         .btn-login {
             width: 100%;
-            padding: 0.85rem;
-            font-size: 1.1rem;
+            padding: 1rem; /* Bigger padding */
+            font-size: 1.2rem; /* Bigger font */
             font-weight: 600;
             color: #fff;
             background: var(--primary);
@@ -199,14 +147,15 @@ h4 {
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(106, 6, 221, 0.3);
             transition:
-                background-color var(--transition-speed) ease,
-                box-shadow var(--transition-speed) ease,
-                transform var(--transition-speed) ease;
+            background-color var(--transition-speed) ease,
+            box-shadow var(--transition-speed) ease,
+            transform var(--transition-speed) ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
         }
+
         .btn-login i {
             font-size: 1.2rem;
         }
@@ -219,24 +168,30 @@ h4 {
             outline: none;
         }
 
-        /* Alert messages */
         .alert {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border-radius: 10px;
             padding: 0.75rem 1rem;
             margin-bottom: 1.5rem;
             box-shadow: 0 2px 8px rgba(106, 6, 221, 0.1);
             animation: fadeInAlert 0.6s ease forwards;
         }
+
         @keyframes fadeInAlert {
-            from {opacity: 0; transform: translateY(-10px);}
-            to {opacity: 1; transform: translateY(0);}
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-footer {
             text-align: center;
-            margin-top: 2rem;
-            font-size: 0.9rem;
+            margin-top: 2.5rem;
+            font-size: 1rem; /* Bigger footer text */
             color: #555;
         }
 
@@ -254,17 +209,17 @@ h4 {
             outline: none;
         }
 
-        /* Back to homepage link */
         .back-link {
             display: block;
-            margin-top: 2.5rem;
+            margin-top: 3rem; /* More margin */
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 1rem; /* Larger */
             color: #777;
             text-decoration: none;
             transition: color var(--transition-speed) ease;
             user-select: none;
         }
+
         .back-link:hover,
         .back-link:focus {
             color: var(--primary);
@@ -272,15 +227,14 @@ h4 {
             outline: none;
         }
 
-        /* Responsive tweaks */
         @media (max-width: 480px) {
             .login-card {
                 padding: 2.5rem 1.75rem;
             }
 
             .btn-login {
-                font-size: 1rem;
-                padding: 0.75rem;
+                font-size: 1.1rem;
+                padding: 0.85rem;
             }
         }
     </style>

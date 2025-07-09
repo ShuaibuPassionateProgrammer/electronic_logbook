@@ -33,6 +33,51 @@ if (isset($_SESSION['st_login'])) {
             box-sizing: border-box;
         }
 
+        html {
+    font-size: 16px; /* Base font size */
+}
+
+.login-card {
+    max-width: 500px; /* Wider card */
+    padding: 3.5rem 3rem; /* More padding for spaciousness */
+    transform: scale(0.95);
+    opacity: 0;
+    animation: zoomFadeIn 0.6s ease forwards;
+}
+
+.logo-text {
+    font-size: 2rem; /* Larger logo text */
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem; /* Bigger heading */
+    margin-bottom: 3rem;
+}
+
+.form-control {
+    font-size: 1.1rem; /* Slightly bigger input text */
+    height: 52px; /* A bit taller inputs */
+    padding-left: 50px; /* Adjust padding to keep space for icons */
+}
+
+.btn-login {
+    font-size: 1.2rem; /* Larger button text */
+    padding: 1rem;
+}
+
+.form-footer {
+    font-size: 1rem; /* Increase footer text */
+    margin-top: 2.5rem;
+}
+
+.back-link {
+    font-size: 1rem; /* Bigger back link text */
+    margin-top: 3rem;
+}
+
+
         body {
             margin: 0;
             min-height: 100vh;

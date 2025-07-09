@@ -1,5 +1,5 @@
 <?php
 session_start();
 unset($_SESSION['sp_login']);
-header('location: /eleclogbook');
+header('location: index.php');
 ?>

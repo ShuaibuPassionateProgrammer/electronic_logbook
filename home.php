@@ -77,7 +77,7 @@
         ?>
             <div class="col-md-4 col-sm-6 mb-4 d-flex align-items-stretch">
                 <a href="<?= $role['link'] ?>" class="text-decoration-none w-100">
-                    <div class="card area-card shadow-sm text-center py-5 px-4 h-100">
+                    <div class="card area-card shadow-md text-center py-5 px-4 h-100">
                         <div class="role-image mb-4">
                             <img src="images/<?= $role['image'] ?>" alt="<?= $role['alt'] ?>">
                         </div>

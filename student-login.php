@@ -10,25 +10,30 @@ include("server.php");
     <title>Student Login | Electronic Log Book</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
     <style>
         body {
             background: #f7f9fc;
         }
 
-        .login-panel {
+        .login-container {
             margin-top: 70px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 30px;
+            max-width: 400px;
             background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(106, 6, 221, 0.3);
         }
 
-        .form-icon {
+        .form-group {
+            position: relative;
+        }
+
+        .form-group i {
             position: absolute;
+            top: 12px;
             left: 15px;
-            top: 10px;
             color: #6a06dd;
+            font-size: 18px;
         }
 
         .form-control {
@@ -45,54 +50,56 @@ include("server.php");
             background-color: #5805bb;
             border-color: #5805bb;
         }
+
+        .alert {
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="login-panel">
-                    <h3 class="text-center mb-4" style="color:#6a06dd;">Student Login</h3>
+    <div class="container d-flex justify-content-center">
+        <div class="login-container">
+            <h3 class="text-center mb-4" style="color:#6a06dd;">Student Login</h3>
 
-                    <?php if (!empty($errors)) : ?>
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                <?php foreach ($errors as $error) : ?>
-                                    <li><?= htmlspecialchars($error) ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (isset($_SESSION['success'])) : ?>
-                        <div class="alert alert-success">
-                            <?= htmlspecialchars($_SESSION['success']);
-                            unset($_SESSION['success']); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <form method="POST" action="student-login.php" novalidate>
-                        <div class="form-group position-relative">
-                            <i class="fa fa-user form-icon"></i>
-                            <input type="text" name="st_matricno" class="form-control" placeholder="Matric Number" required autocomplete="off" value="<?= isset($_POST['st_matricno']) ? htmlspecialchars($_POST['st_matricno']) : '' ?>" />
-                        </div>
-
-                        <div class="form-group position-relative">
-                            <i class="fa fa-lock form-icon"></i>
-                            <input type="password" name="st_password" class="form-control" placeholder="Password" required autocomplete="off" />
-                        </div>
-
-                        <button type="submit" name="st_login" class="btn btn-primary btn-block">
-                            Login &nbsp;<i class="fa fa-sign-in"></i>
-                        </button>
-                    </form>
-
-                    <p class="text-center mt-3">
-                        Don't have an account? <a href="student-register.php">Register Here</a>
-                    </p>
+            <!-- Show errors -->
+            <?php if (!empty($errors)) : ?>
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= htmlspecialchars($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            </div>
+            <?php endif; ?>
+
+            <!-- Show success message -->
+            <?php if (isset($_SESSION['success'])) : ?>
+                <div class="alert alert-success">
+                    <?= htmlspecialchars($_SESSION['success']);
+                    unset($_SESSION['success']); ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="POST" action="student-login.php" novalidate>
+                <div class="form-group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" name="st_matricno" class="form-control" placeholder="Matric Number" required autocomplete="off" value="<?= isset($_POST['st_matricno']) ? htmlspecialchars($_POST['st_matricno']) : '' ?>" />
+                </div>
+
+                <div class="form-group mt-3">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="st_password" class="form-control" placeholder="Password" required autocomplete="off" />
+                </div>
+
+                <button type="submit" name="st_login" class="btn btn-primary btn-block mt-4">
+                    Login <i class="fa fa-sign-in"></i>
+                </button>
+            </form>
+
+            <p class="text-center mt-3">
+                Don't have an account? <a href="student-register.php">Register Here</a>
+            </p>
         </div>
     </div>
 

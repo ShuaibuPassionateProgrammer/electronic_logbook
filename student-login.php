@@ -1,7 +1,6 @@
 <?php
 include('server.php');
 
-// Redirect if already logged in
 if (isset($_SESSION['st_login'])) {
     header('Location: student-dashboard.php');
     exit();
@@ -10,155 +9,233 @@ if (isset($_SESSION['st_login'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Student Login | Electronic Logbook</title>
 
-    <!-- External Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- External -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Custom Styles -->
     <style>
         :root {
             --primary: #6a06dd;
             --primary-dark: #5804c2;
-            --bg-light: #f3f4f8;
+            --bg-light: #f7f8fc;
             --text-color: #333;
-            --border-radius: 12px;
+            --border-radius: 14px;
+            --transition-speed: 0.35s;
         }
 
-        * {
+        /* Base Reset */
+        *, *::before, *::after {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background: var(--bg-light);
-            font-family: 'Segoe UI', sans-serif;
-            color: var(--text-color);
-        }
-
-        .login-wrapper {
             min-height: 100vh;
+            background: linear-gradient(135deg, #eef1fb 0%, #dfe4f7 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
             display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(to bottom right, #f5f7fa, #edf0f9);
+            align-items: center;
+            padding: 1rem;
+            overflow-x: hidden;
+            /* Smooth zoom animation container */
         }
 
+        /* Zoom-in on page load */
         .login-card {
-            background-color: #fff;
+            background: #fff;
             border-radius: var(--border-radius);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            box-shadow:
+                0 10px 15px rgba(0, 0, 0, 0.07),
+                0 20px 40px rgba(0, 0, 0, 0.05);
             max-width: 420px;
             width: 100%;
-            padding: 3rem 2rem;
-            transition: box-shadow 0.3s ease;
+            padding: 3rem 2.5rem;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: zoomFadeIn 0.6s ease forwards;
+            transition: box-shadow var(--transition-speed) ease;
+        }
+        @keyframes zoomFadeIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         .login-card:hover {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            box-shadow:
+                0 14px 20px rgba(0, 0, 0, 0.1),
+                0 25px 60px rgba(0, 0, 0, 0.08);
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
             color: var(--primary);
-            font-weight: bold;
             text-align: center;
             margin-bottom: 1.5rem;
+            letter-spacing: 1.3px;
+            user-select: none;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(106, 6, 221, 0.2);
         }
 
-        .login-card h4 {
+        h4 {
             font-weight: 600;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
         }
 
         .form-group {
             position: relative;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.6rem;
         }
 
+        /* Icon styling */
         .form-group i {
             position: absolute;
-            left: 16px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
+            color: #a3a8bb;
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: color var(--transition-speed) ease;
         }
 
+        /* Input Styling */
         .form-control {
+            width: 100%;
             height: 48px;
-            padding-left: 45px;
+            padding-left: 48px;
             border-radius: 30px;
-            border: 1px solid #ccc;
-            transition: border-color 0.3s ease;
-            font-size: 0.95rem;
+            border: 1.8px solid #d0d3db;
+            font-size: 1rem;
+            color: #444;
+            transition:
+                border-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease;
+            outline-offset: 3px;
+            outline-color: transparent;
         }
 
+        /* Input Focus & Interaction */
         .form-control:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(106, 6, 221, 0.1);
+            box-shadow: 0 0 8px 2px rgba(106, 6, 221, 0.15);
+            outline-color: var(--primary);
         }
 
+        /* Change icon color on focus */
+        .form-control:focus + i,
+        .form-group input:not(:placeholder-shown) + i {
+            color: var(--primary);
+        }
+
+        /* Button Styling */
         .btn-login {
             width: 100%;
-            padding: 0.75rem;
-            font-size: 1rem;
-            font-weight: 500;
-            border-radius: 30px;
-            background-color: var(--primary);
-            color: white;
+            padding: 0.85rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--primary);
             border: none;
-            transition: background-color 0.3s ease;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(106, 6, 221, 0.3);
+            transition:
+                background-color var(--transition-speed) ease,
+                box-shadow var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-login i {
+            font-size: 1.2rem;
         }
 
-        .btn-login:hover {
+        .btn-login:hover,
+        .btn-login:focus {
             background-color: var(--primary-dark);
+            box-shadow: 0 6px 14px rgba(88, 4, 194, 0.5);
+            transform: scale(1.03);
+            outline: none;
         }
 
+        /* Alert messages */
         .alert {
-            font-size: 0.875rem;
-            border-radius: 8px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(106, 6, 221, 0.1);
+            animation: fadeInAlert 0.6s ease forwards;
+        }
+        @keyframes fadeInAlert {
+            from {opacity: 0; transform: translateY(-10px);}
+            to {opacity: 1; transform: translateY(0);}
         }
 
         .form-footer {
             text-align: center;
-            margin-top: 1.75rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #555;
         }
 
         .form-footer a {
             color: var(--primary);
-            font-weight: 500;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color var(--transition-speed) ease;
         }
 
-        .form-footer a:hover {
+        .form-footer a:hover,
+        .form-footer a:focus {
             text-decoration: underline;
+            color: var(--primary-dark);
+            outline: none;
         }
 
+        /* Back to homepage link */
         .back-link {
             display: block;
+            margin-top: 2.5rem;
             text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: #777;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+            user-select: none;
         }
-
-        .back-link:hover {
-            text-decoration: underline;
+        .back-link:hover,
+        .back-link:focus {
             color: var(--primary);
+            text-decoration: underline;
+            outline: none;
         }
 
+        /* Responsive tweaks */
         @media (max-width: 480px) {
             .login-card {
-                padding: 2rem 1.5rem;
+                padding: 2.5rem 1.75rem;
+            }
+
+            .btn-login {
+                font-size: 1rem;
+                padding: 0.75rem;
             }
         }
     </style>
@@ -166,18 +243,15 @@ if (isset($_SESSION['st_login'])) {
 <body>
 
 <div class="login-wrapper">
-    <div class="login-card">
-
-        <div class="logo-text">Electronic Logbook</div>
+    <main class="login-card" role="main" aria-label="Student Login Form">
+        <div class="logo-text" aria-label="Application logo">Electronic Logbook</div>
         <h4>Student Sign In</h4>
 
         <!-- Success Alert -->
         <?php if (isset($_SESSION['success'])): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" tabindex="0">
                 <?= htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    &times;
-                </button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
             </div>
         <?php endif; ?>
 
@@ -186,40 +260,32 @@ if (isset($_SESSION['st_login'])) {
 
         <!-- Login Form -->
         <form action="student-login.php" method="POST" novalidate>
-            <!-- Matric Number -->
             <div class="form-group">
-                <i class="fa fa-user"></i>
-                <input type="text" name="st_matricno" class="form-control" placeholder="Matric Number" required>
+                <input type="text" id="st_matricno" name="st_matricno" class="form-control" placeholder="Matric Number" required autocomplete="username" aria-label="Matric Number" />
+                <i class="fa fa-user" aria-hidden="true"></i>
             </div>
 
-            <!-- Password -->
             <div class="form-group">
-                <i class="fa fa-lock"></i>
-                <input type="password" name="st_password" class="form-control" placeholder="Password" required>
+                <input type="password" id="st_password" name="st_password" class="form-control" placeholder="Password" required autocomplete="current-password" aria-label="Password" />
+                <i class="fa fa-lock" aria-hidden="true"></i>
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" name="st_login" class="btn btn-login">
+            <button type="submit" name="st_login" class="btn-login" aria-label="Log in to student account">
                 <i class="fa fa-sign-in"></i> Login
             </button>
         </form>
 
-        <!-- Footer Links -->
         <div class="form-footer">
-            <a href="student-reset-password.php">Forgot Password?</a><br>
-            <span>Don't have an account? 
-                <a href="student-register.php"><strong>Register</strong></a>
-            </span>
+            <a href="student-reset-password.php">Forgot Password?</a><br />
+            <span>Don't have an account? <a href="student-register.php"><strong>Register</strong></a></span>
         </div>
 
         <a href="index.php" class="back-link">← Back to Homepage</a>
-
-    </div>
+    </main>
 </div>
 
 <?php include('includes/footer.php'); ?>
 
-<!-- Scripts -->
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
